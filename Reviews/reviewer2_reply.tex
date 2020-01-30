@@ -1,0 +1,248 @@
+% Point one description 
+\begin{point}
+Although the technical term transparency is moreover widely known in the research field, a sentence stating the definition of transparency is missing. (e.g.: Just et.al. Exoskeleton Transparency 2018 \cite{just2018exoskeleton})
+	\label{pt:foo}
+	
+ \end{point}
+
+% Our reply
+
+	
+\begin{reply}
+	We thank the reviewer for referring to this important work \cite{just2018exoskeleton}, that is very relevant to the presented research as it presents transparency measures on ArMin IV obtained under the same task of multi-joint movement.
+	
+	Also performance is quite similar. 
+	We agree with the reviewer that the transparency was not properly defined.
+	We have added in the introduction a discussion on performance measurements where we introduce both measures of "haptic rendering" and "transparency", for the latter we refer to \cite{transparency_reiner_2018} and, a definition of transparency has been introduced.
+
+ \noindent\fbox{%
+    \parbox{\textwidth}{%
+
+        
+        \noindent
+\begin{description}
+	\item[{\bf Transparency }] %\hspace{1 cm}
+	%Transparency
+	relates to the ability of the
+	robotic system interacting with a human who is moving
+	voluntarily
+	not to apply any assistance/
+	resistance to free motion
+	\cite{jarrasse2010methodology},
+	or equivalently means that the robot’s
+	reaction forces perceived by the user are minimal \cite{just2018exoskeleton}.
+	No standard procedures exist for the measurement of transparency in pHRI, but for exoskeletons there is a general consensus  to refer not only to end-effector resistance forces, but also to single joints resistance torques or measurements at contact points \cite{just2018exoskeleton}.
+	\item[{\bf Haptic rendering} ] %\hspace{2 cm}
+	%Haptic rendering 
+%	\hspace{1 cm}
+	refers to the capability of the device to render a desired dynamic behavior, such as a virtual impedance  or a virtual wall, i.e. a
+	task featuring both very high impedance (when in contact
+	with the wall) and very low impedance (when out of
+	contact) \cite{colgate1994factors}. Better mechanical structures,
+	including appropriate dimensioning of the sensors and
+	actuators, combined with more effective
+	control strategies  should predict the maximum
+	stiffness that can be displayed by existing devices   \cite{diolaiti2005criterion}.
+\end{description}
+
+    }%
+}
+
+\end{reply}
+
+
+
+
+\begin{point}
+The type of experimental protocol and the outcome metrics for
+transparency evaluation are not discussed compared to literature in the
+paper. However, in the past there have been researchers successfully
+defining general experimental protocols as well as metrics for
+transparency evaluation of exoskeletons in literature (e.g.: Jarrasse
+et.al Methodology 2010) \cite{jarrasse2010methodology}. The reviewer suggests to compare your
+experimental results to well-known metrics in the literature to improve
+the quality/comparability of the paper/exo
+	\label{pt:transparency}
+\end{point}
+
+\begin{reply}
+We thank the reviewer for suggesting us the literature work \cite{jarrasse2010methodology} by Jarrasse et. al. 
+Regarding the transparency evaluation, our used performance index for the interaction torques correspond to the $PI_9$ index proposed in \cite{jarrasse2010methodology}. 
+About the experimental protocol, we performed a multi-joint transparency study similarly to \cite{just2018exoskeleton}. Due to a high similarity between our experiments and the ones proposed in \cite{just2018exoskeleton}, we presented the results of the interaction torques during transparency experiments in a very close graphical way (Fig. 12) and, a comparison with literature results has been added.
+The suggested work \cite{jarrasse2010methodology} implements a smoothness analysis also. We use the $PI_3$ proposed index to evaluate how smooth is the proposed exoskeleton with the 3 developed controller. The computed indexes can be found in Table VII. Despite the better performances of the JTFC1 controller in terms of interaction torques, our proposed controller highlights a more jerky behavior. This aspects has been discussed in the result section.
+%A discussion to literature was added. In particular our results have been compared to well known existing metrics in literature.
+\end{reply}
+
+
+
+\begin{point}
+The reviewer suggests to more intensively order/split for
+“transparency” and “haptics” the paragraphs study design and motivation
+for each measure before the results are presented in section V.
+
+\end{point}
+
+\begin{reply}
+In the introduction this has been explicitly made by introducing the two concepts in two paragrpahs.
+\end{reply}
+
+
+
+\begin{point}
+
+In general, all figures should be self explaining. Variables should be
+named or explained in the caption of each figure. This makes it easier
+to understand the figure without having to switch between text and
+figure for explanation. The size \& font of variables in figure and text
+should all match. In the moment each figure has a different scaling,
+the text size differs from too small to too big, and different fonts
+are used.
+
+\end{point}
+
+\begin{reply}
+We agree with the reviewer and we thank the reviewer for the detailed list of improvements regarding the figures (provided in the Minor comments section).
+A great effort has been put to make the figures more clear, usable and informative.
+All the figures of the second version of the paper are new and have been checked.
+All the figures share the same font type and size (i.e. the footnote size).
+\end{reply}
+
+
+\begin{point}
+
+The novelty of your paper should be clearly defined in abstract and
+conclusion. Is novelty in the study design, in the comparison of the
+three controllers? Then the study should be more in the focus. The
+overall novelty of the “novel controller JTFC1” needs to be more clear.
+Why are the other two controllers chosen? Are they representing gold
+standards in literature, could there be other possible disturbance
+observers who could reach similar performance as JTFC1? The discussion,
+why JTFC1 could be more effective than others is missing.
+
+\end{point}
+
+\begin{reply}
+This point was also raised by reviewer 5 and then has been addressed in the introduction and further parts.
+The introduction was revised in order to make it more clear.
+\end{reply}
+
+
+\subsection*{Minor}
+
+% Use the short-hand macros for one-liners.
+\shortpoint{ In the introduction, the differentiation between groups (post-stroke
+neuro-rehabilitation device vs. human-robot interaction device) remains
+unclear. The reviewer thinks that the cited papers all include
+human-robot interaction and suggests to change the sentence. “In all of
+these physical human-robot interaction devices”. 
+Furthermore, to avoid misunderstanding, the reviewer suggests to add
+“physical” to “human-robot interaction” (abbreviation: pHRI instead of
+HRI)[Bajcsy, O’Malley, Learning robot objectives, CoRL 2017], which is
+the correct technical term, since there is the known research field
+“human-robot interaction” in social science. }
+\shortreply{ We agree with the reviewer, the pHRI was introduced and the appropriate suggested reference was mentioned. }
+
+
+% Use the short-hand macros for one-liners.
+\shortpoint{ 
+The joint definition with $J_1$ etc. , the motor inertia as $J_{mi}$,
+$J_{li}$ could be irritating since also the Jacobian is also $J$
+(Equation 37). The researcher suggests to use maybe the variable
+$\theta_i$ for the joint, since afterwards the motor encoder
+measurement $\theta_{mi}$ of each axis is also denoted as theta. 
+Why are the variables x and y marked as fat, but the vectors and
+matrices not (Equation 5). The reviewer suggested to stick to the
+international norm of vector (small letter \& fat) and matrix (big
+letter \& fat) notation for the whole paper.  }
+\shortreply{The suggestions from reviewers are very useful, the notation was fixed according to indications.
+So following changes were implemented
+\begin{itemize}
+\item the variable from the joint is now indicated as $\theta$ only and the subscript $j$ has been removed.
+\item As far vector and matrices the notation from reviewer was adopted, so now we have:
+norm of vector (small letter \& fat) and matrix (big
+letter \& fat) notation. 
+\item inertias are indicated with I
+\end{itemize}
+}
+
+% Use the short-hand macros for one-liners.
+\shortpoint{ Figure 3: The difference of Joint 3 and 5 compared to Joint 1,2,4
+	should be named. }
+\shortreply{ Thanks, this was fixed in the new figure.}
+
+\shortpoint{ Figure 9:The legend is too small and not readable. 9b. Scale on the
+	object and not readable. }
+\shortreply{ Fixed. This Figure has been merged with other ones that share the same context (currently it is Figure 3).}
+
+\shortpoint{ Figure 10: Text to small and coordinate system not readable. }
+\shortreply{ The old Figure 10 did not have any coordinate system. We guess this was a typo. The old Figure 10 has been removed due to its low informative value. All the new figures have correct font size.}
+
+\shortpoint{ Figure 12: No latex font used like in Figure 10 and text is again quite
+	small. }
+\shortreply{ Fixed. We added the Bode phase plot also.}
+
+\shortpoint{ Figure 13: Could be adapted with smaller Dynamic Saturation \& Kalman
+	Filter block to achieve bigger fonts, otherwise double column figure
+	would be suggested }
+\shortreply{ Fixed. This Figure is now the number 7 and it is double column. The new Figure 7 merges the old Figures 13 and 14. }
+
+\shortpoint{ Figure 16: Better arrangement of summation block would make it easier
+	to understand which channel is plus and which is minus. }
+\shortreply{ Fixed.}
+
+\shortpoint{ Figure 17: The legends are blocking the view on the data. }
+\shortreply{ Fixed. Currently, it is Figure 10 and it is double column. Angle and acceleration have been split in 2 separate plot. Legends do not block more the view of the data. Acceleration and torques axes in the 2 conditions share the same scale, thus an easy comparison can be done by eye from the reader.}
+
+\shortpoint{ Figure 18: Where is the reference circle? Could it be integrated to
+	show the differences of the controllers? }
+\shortreply{ Fixed. Currently, it is Figure 13 and it shows the reference and the actual circles executed for different speeds and with the 3 developed controller.}
+
+\shortpoint{ Figure 19: A confidence interval is shown, probably 95\% CI? It is not
+	explained. The reviewer refers to the main comment for figures.	 }
+
+
+\shortreply{ The experiments have been re-done with 10 subjects and are now plotted as boxplot in Figure 13. The boxplot contains information on the mean, the 1st and 3rd quartile as well as the maximum and minimum values. }
+
+\shortpoint{ Fig 20 \& 22: see Figure 19  }
+\shortreply{ The old Figure 20 has been removed because we aligned with literature, in detail we calculate the same indexes of \cite{just2018exoskeleton} in order to show comparable results. The old Figure 22 is currently the Figure 16. The shown interval refers to the estimated standard deviation.}
+
+
+\shortpoint{ Fig. 20: Color coding of paper probably forgotten. }
+\shortreply{ We are very sorry. Fixed.}
+
+\shortpoint{ Fig. 21 Other colors should be taken as your three main colors. This
+	should be only for JTFC. This improves the clarity and readability of
+	the paper. }
+\shortreply{ Thanks, this comment has been implemented as well.}
+
+\shortpoint{ The reviewer couldn’t find the ethic approval for research on humans
+	for the presented experiments. Please add the according information
+	about ethics approval. }
+\shortreply{ An informed consent was asked to all users that took part to the study, and this has been now reported in the paper.}
+
+\shortpoint{ Please state, why only one subject was needed to evaluate the
+	transparency, since your exoskeleton’s transparency and the
+	compensation quality probably differs for different arm length. }
+\shortreply{ Because we supposed the transparency of the exoskeleton depends only (or predominantly) from the adopted controller rather than from the subject. In fact, the subject can be seen as an external disturbance for the controllers that acts at joint level. Despite this, we followed the reviewer suggestion and we performed a new experiment with 10 healthy subjects. The results obtained with 10 subjects are in agreement with the previous results obtained from only one subject.}
+
+\shortpoint{ Why was only one velocity chosen (and why this one), although it is
+	expected that that the transparency of the three controllers differs
+	for different speeds? }
+\shortreply{ We thank the reviewer to highlight this aspect. We performed the new experiment with two speed conditions ($45 ~ deg/s$, slow and, $90 ~ deg/s$, fast	) as proposed in \cite{just2018exoskeleton}.}
+
+\shortpoint{ Do you have the tracking error and velocity profile saved as an outcome
+	measure and would it be an interesting outcome measure to understand
+	the transparency performance and the result of the three controllers
+	better? “The high transparency… p.13” comparing to existing transparency
+	measures could lead to this interpretation.}
+\shortreply{ We plot data of the performed circles in the new Figure 11. During the transparency experiment, the exoskeleton end-effector was depicted as a green point on a screen and the subjects were asked to follow a red point that moves on top of a circle at constant angular speed. We give them as instruction to move at constant speed and try to keep the two colored points as close as possible, and in case of drift, to keep a constant displacement (in order to perform circles at constant speed). For this reason, the displacement error is not an informative variable as well the angular speed. The velocities ($v_x$ and $v_y$) resemble two sines in opposite phase between them.}
+
+%\shortpoint{ “The high transparency… p.13” comparing to existing transparency
+%	measures could lead to this interpretation.}
+%\shortreply{ ******* TROPPO SONNO PER CAPIRE QUESTA ***** Fixed.}
+
+\shortpoint{ 
+	Can you make any analysis on which controller is better(significance
+	analysis), or are therefore more subjects needed? }
+\shortreply{ We thank the reviewer for this consideration. The results we obtained from new the experiment are statistically significant. We perform a paired t-test, and the interaction torque differences between JTFC1 and JTFC2 and, between JTFC1 and JTFC3 are significant with $p < 0.01$ for joints 1, 2 and 4 in both slow and fast speed.}
+

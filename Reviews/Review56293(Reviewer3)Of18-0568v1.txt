@@ -1,0 +1,121 @@
+Major Contribution of the Paper:
+This paper reports on the development and implementation of a compact
+elastic actuated joint with integrated torque sensing for use in
+feedback control schemes. A further contribution of the paper is the
+development and comparison of three different control schemes,
+implementing full state, basic, and passivity-based control.
+
+Organization and Style:
+The paper is well organized into main sections of System Design,
+Dynamic Modeling, and a combined section of Experiments and Results.
+The details of the experiments performed with the controllers are
+scarce, and should be elaborated for greater clarity. Phrases like "the
+experimenter pushed the end-effector on the surface" leave the
+direction of pushing unclear. Was there any instruction or consistency
+in the forces applied (e.g., planar, orthogonal to the surface, etc.)?
+
+Technical Accuracy:
+The text is mostly technically accurate with some usage of ambiguous
+terms as mentioned above. However, it should be noted that there are 44
+equations within the main paper and the Appendix, and these should be
+reviewed carefully by the authors for accuracy. 
+
+Presentation:
+The clarity of text is a bit sporadic. It is clear and professional
+throughout much if the writing. However, there are numerous
+grammatically awkward phrases and some examples of unclear text needing
+rewording for clarity. It is therefore recommended that the work be
+proofread by a native English speaker. Some examples are provided in
+the comments below. Also, there are currently 22 individual figures.
+Some of these would be better organized as subfigures together with
+other closely-related images, diagrams, or illustrations, to lessen the
+burden on the reader of drawing connections between aspects of the
+work. Figures 6, 8, and 9, for example are highly related and it could
+be argued that they could easily be merged into a single, more cohesive
+figure. Other sections could benefit from additional figures, such as
+the experimental setup. There is not figure in the paper that shows the
+device in use by a user to illustrate how the arm is configured
+relative to the joints and end-effector. Some text seems to insinuate
+that the hand holds the end-effector but the rest of the joints are not
+aligned with the anatomical joints of the user. Images of the testing
+setup would help alleviate such ambiguity.
+
+Citations appear adequate.
+
+Additional Comments:
+There are numerous grammatical inconsistencies involving the use of
+plurals and prepositions.
+
+Abstract: "for several applications" seems vague and irrelevant in the
+opening sentence.
+
+Abstract: influence performances in term of --> influence performance
+in terms of
+
+Abstract: an other --> [another]
+
+Abstract: complexity, maximum torque, transparency and haptic
+capabilities --> complexity, maximum torque, transparency, and haptic
+capabilities
+This is a minor and common mistake, but lists of 3 or more things
+should have a comma also before the "and". Check paper throughout,
+including title. 
+
+Some inconsistent formatting, missing plurals, missing oxford commas,
+and incorrect verb tenses (noted in pdf). 
+
+Some awkward formulation of infinitive verb forms: "allows to obtain"
+should be replaced by "allows it to obtain" or "allows obtaining".
+Check for similar throughout paper, e.g.: 
+	capable to exert --> capable of exerting 
+	capable to infer --> capable of inferring
+
+Page 2: awkward phrasing: "for what concern transparency" -->
+"regarding transparency"
+
+Page 2: what does it mean to evaluate at geometrical level the
+quantitative and qualitative behavior of the controller? This portion
+of the introduction is important to provide the user with an
+understandable overview of what's to come. Further effort should be
+made to make the text more reader friendly and less ambiguous.
+
+Page 3: controls --> "controllers" or "control schemes"
+
+Page 3: it seems odd that the value of 3.7 is given for both weight and
+inertia after the reduction. Is this a typo?
+
+Page 4: why is R defined here in text when not used in the equations
+(1) and (2)?
+
+Page 4: the strain gauges were placed at a distance of 3mm from the
+extremities. How was this location determined besides just not being in
+the middle and not beign too close to the end?
+
+Fig.8: some small text and the arrow pointing to the location of the
+sensor is not clear. Location of probe is not visible at all in black
+and white.
+
+Page 5: avoid using "(n+1)-th" link. Referring to the n-th link is
+okay, but n+1 would be less ambiguous as "link n+1".
+
+Page 5: deputed to estimate --> employed to estimate?
+
+Figure 12: this is a figure for 3 different joints, but only one curve
+is shown. Do they all have the same curve? Is this just for the motor
+or does it involve the link inertias as the term "Joint" would imply?
+
+Figure 17: it's not clear from the figure if the observations made in
+text are accurate. Although the position and acceleration are similar,
+the plots in (a) and (b) have different scales on both x and y axes
+which could contribute in part to the lower interaction torques. When
+plots are compared, their axes should be scaled equally.
+
+Figure 18: it would be nice to see the target circle, perhaps overlaid
+in white, on the plot for reference.
+
+Page 12: few details are provided about the controller evaluation
+trials T1-T4 and the details provided use some ambiguous terms that
+don't help to clarify what was done. Please revise and add text to
+improve the clarity. 
+
+For additional markup and suggested revisions, see attached pdf.

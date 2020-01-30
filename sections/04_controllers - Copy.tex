@@ -1,0 +1,624 @@
+\section{Full state, basic and passivity-based feedback controllers} 
+\label{sec:Full_state_feedback_controllers}
+
+From the full dynamic model of the exoskeleton, a novel  full state feedback control law   was  derived and implemented. This control law is  identified in the following with the acronym JTFC1  and  explained in subsection \ref{subsec:JTFC1}.
+To implement the control, the state of the system and, more in particular, the joint torque was estimated through a Kalman Filter described in  subsection \ref{subsec:kalmanTorque}.
+To evaluate the performance of  the proposed full state feedback control,  two other torque controls inspired to existing joint torque controls available in literature have been implemented, identified respectively with the acronyms JTFC2 and JTFC3.
+% We searched for torque controls designed for joint torque-based robots with a joint structure similar to the Rehab-Exos one.
+\par The JTFC2, presented in subsection \ref{subsec:JTFC2}, is based on a  torque control   for  single joint based on torque sensor first  introduced by Hashimoto \cite{hashimoto1998experimental}. In order to compare the basic torque control with our full state feedback control, the Hashimoto formulation was extended and generalized to a multi-dof case. 
+\par The JTFC3, reported in subsection \ref{subsec:JTFC3}, was inspired to the passivity-based control law \cite{kugi2008passivity}
+implemented for the DLR Light Weight Robot III (LWR III)   that guarantees the passivity of the controlled system. The DLR LWR III shows a joint design compatible with the Rehab-Exos one, since both systems make use of the joint torque sensor to estimate the interaction torques/forces with the environment/human.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{An optimal observer for estimation of joint torque}\label{subsec:kalmanTorque}
+Since the correct state estimation  is essential for the design of a full-state feedback joint-torque controller, the knowledge of the interaction torques between the human arm and the exoskeleton are required for  torque control implementation. The joint torque sensor provides a raw measurement $\tau_{s,i}$ that can be used together with the measured joint position $\theta_{m,i}$ to filter the sensed torque and to estimate the full system state, given by $[\tau_{s,i},\ \dot{\tau}_{s,i},\ \theta_{m,i},\ \dot{\theta}_{m,i},\ \tau_{d,i},\ \tau_{l,i}]$, where $\vects{\tau_l}=\vectm{J}^T \vects{F_l}$. 
+Thus, a full-state Kalman filter has been designed to clean out both  $\theta_{m,i}$ from quantization noise $w_{\theta,i}$ and $\tau_{s,i}$ from measurement noise $w_{\tau,i}$, as well as to estimate the remaining variables.
+%
+\par 
+Following \cite{vertechy2012interaction}, the dynamics of the two state components $\tau_{d,i}$ and $\tau_{l,i}$ can be modeled as two distinct Wiener processes (i.e. as two distinct non-stationary random processes) $\dot{\tau}_{d,i}=v_{d,i}$ and $\dot{\tau}_{l,i}=v_{l,i}$. Starting from equations (\ref{eq:dynamics_eq1},\ref{eq:dynamics_eq2}) the following meta-system can be derived:
+%
+
+
+%%%%%%DA VERIFICARE COSA SUCCESSO
+
+\begin{equation}
+\left \{
+\begin{aligned}
+\vects{\dot{\tau}_i} &=\vectm{A_i}\vects{\tau_i}+\vectm{B_i}\vects{\tau_{m,i}}+\vectmm{\Gamma}\vects{v_i} \\
+		\vects{y_i} &=\vectm{C}\vects{\tau_i}+\vects{w_i}
+		\end{aligned}
+		\right .
+		\label{eq:metasystem}
+		\end{equation}
+		%
+		where $\vects{\tau_i}^T=[ \dot{\tau}_{s,i}\ \tau_{s,i}\ \dot{\theta}_{m,i}\ \theta_{m,i}\  \tau_{l,i} \tau_{d,i}\ ]$ is the meta-state vector, $\vects{v_i}^T=[ v_{l,i}\ v_{d,i} ]$ is the vector of process noises with variances $V_{l,i}$ and $V_{d,i}$, $\vects{w_i}^T=[ w_{\tau,i}\ w_{\theta,i} ]$ is the vector of measurement noises with variances $W_{l,i}$ and $W_{d,i}$, whereas:
+		%
+		\begin{equation}
+		\begin{aligned}
+		\vectm{A_i}=\mat{ \frac{-c_{t,i}}{J_i}  & \frac{-k_{t,i}}{J_i}& \frac{k_{t,i}b_{m,i}}{J_{m,i}} & 0 & \frac{ k_{t,i}}{J_{l,i}} &  \frac{-k_{t,i}}{J_{m,i}} \\
+			1 & 0 & 0 & 0 & 0 & 0\\
+			\frac{c_{t,i}}{  k_{t,i} J_{m,i} }&  \frac{1}{J_{m,i}} &  \frac{ -b_{m,i}}{J_{m,i}} & 0 & 0 &  \frac{1}{J_{m,i}}\\
+			0 & 0 & 1 & 0 & 0 & 0\\
+			0 & 0 & 0 & 0 & 0 & 0\\
+			0 & 0 & 0 & 0 & 0 & 0} \\
+		\vectm{B_i}=\vectlong{ \frac{ -k_{t,i}}{J_{m,i}} \\ 0 \\ \frac{1}{J_{m,i}} \\ 0 \\ 0 \\ 0}  \quad
+		\vectmm{\Gamma}=\mat{ 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 0 & 0 \\ 1 & 0 \\ 0 & 1} \quad
+		\vectm{C}=\mat{0 & 0 \\  1 & 0 \\  0 & 0  \\
+			0 & 1 \\  0 & 0 \\ 0 & 0 } 
+		\end{aligned}
+		\label{stateobserver}
+		\end{equation}
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+	\subsection{A full state feedback controller (JTFC1)} \label{subsec:JTFC1}
+	
+	The proposed control law is based on the full state obtained from the state  observer described by (\ref{eq:metasystem})  (\ref{stateobserver}), where the input control $\vect{u}$ is splitted up into one term $\vect{u_f}$, which implement control force behavior, and another term $\vects{u_g}$, which acts as a gravity compensation
+	
+	\begin{equation}
+	\label{generic_control_law1}
+	\begin{aligned}
+	\vect{u} &= \vect{u_f} + \vect{u_g}
+	\end{aligned}
+	\end{equation}
+	
+The two above terms are expressed as:
+	
+	\setlength{\arraycolsep}{0.0em}
+	
+	\begin{IEEEeqnarray}{ll}
+			\label{eq:JTCF1_control_law_a}
+				\vect{u_g} &= \vect{G}(\vectm{D}\vects{\hat{\uptheta}_m}) \\
+			\vect{u_f} &  =
+			\overbrace{\colorboxed{blue}{ (\vectm{I_m} \overline{\vectm{M}^{-1}}  \vectm{J^T} \vects{\hat{F}_l}+ \vectm{B_m} \vectm{D}\vects{\dot{\uptheta}_m} {-}\:\vects{\hat{\uptau}_d} ) }}^{\text{full state feedforward}}
+			+ \nonumber  \\
+			&    \underbrace{\colorboxed{green}{\vectm{I^{-1}_i} \vectm{I_m} \vects{\uptau^D_s}}}_{\text{desired torque}}
+			- \underbrace{\colorboxed{red}{\vectm{I_m} \vectm{K^{-1}_t} (\vects{\ddot{\uptau}_s^D}- \vectm{K_d} \vect{\dot{e}} -  \vectm{K_p} \vect{e}  )}}_{\text{state feedback}}
+			\label{eq:JTCF1_control_law_b}
+		\end{IEEEeqnarray}
+			
+			
+
+	\setlength{\arraycolsep}{5pt}
+	
+	where  $\vect{e}=\vects{\uptau_s}-\vects{\uptau_s^D}$ is the error on sensor torque, given the desired sensor torque  $\vects{\uptau_s^D}$.
+	Let us assume moreover that
+	
+	\begin{equation}
+ \left\{ \,
+	\begin{IEEEeqnarraybox}[][c]{l?s}
+	\IEEEstrut
+\vects{\dot{\uptau}_s^D=0}  & so $\vect{\dot{e}}=\vects{\dot{\uptau}_s}$, \\
+\vects{\ddot{\uptau}_s^D=0} & so $\vect{\ddot{e}}=\vects{\ddot{\uptau}_s}$. 
+	\IEEEstrut
+	\end{IEEEeqnarraybox}
+	\right.
+	\label{eq:conditions}
+	\end{equation}
+
+
+
+
+%	 the expression \eqref{eq:JTCF1_control_law_b} of $\vects{u_f}$ can be rewritten as
+%	
+%	\footnotesize
+%	\setlength{\arraycolsep}{0.0em}
+%	\begin{IEEEeqnarray}{l}
+%	\label{eq:JTCF1_control_law_uf_simple}
+%	\vects{u_f} = \: \vectm{B_m}   \vectm{D}\vects{\dot{\uptheta}_m} +  \vectm{I_m} \overline{\vectm{M}^{-1}} \vectm{J^T} \vects{\hat{F}_l} - {\vectm{I_i^{-1}}} \vectm{I_m} \vects{\uptau_s^D}  {-}\:\vects{\hat{\uptau}_d} + \vectm{K_p} \vects{e} + \vectm{K_d} \vects{\dot{e}}
+%	\end{IEEEeqnarray}
+%	\normalsize
+%	\setlength{\arraycolsep}{5pt}
+	
+	The modified dynamics with the control laws  (\ref{generic_control_law1}), (\ref{eq:JTCF1_control_law_a}) and (\ref{eq:JTCF1_control_law_b}), leads to a stable error dynamics equations:
+	
+<<<<<<< HEAD
+	\begin{equation}
+%	\vects{\ddot{\uptheta}_m} &= \vectm{D}^{-1} (\vects{\ddot{\uptheta}} -\vectm{K_t^{-1}} \vect{\ddot{e}})
+%\\
+	\vects{0}  = \vect{\ddot{e}} + ( \vectm{C_t} \vectm{I_i^{-1}} + \vectm{K_d} )\vect{\dot{e}}+ ( \vectm{K_t} \vectm{I_i^{-1}}  + \vectm{K_p}   )\vect{e}
+	\end{equation}
+=======
+	\begin{align}
+	\vects{\ddot{\uptheta}_m} &= \vects{\ddot{\uptheta}_j} -\vectm{K_t^{-1}} \vect{\ddot{e}}
+\\
+	\vects{0} & = \vect{\ddot{e}} + ( \vectm{C_t} \vectm{J_i^{-1}} + \vectm{K_d} \vectm{K_t}  \vectm{J_m^{-1}})\vect{\dot{e}}+ ( \vectm{K_t} \vectm{J_i^{-1}}  + \vectm{K_p}  \vectm{K_t}  \vectm{J_m^{-1}})\vect{e}
+	\end{align}
+>>>>>>> 6dbfcaf521f44d4d6bd9da235f07c6e11997fc64
+	
+	The convergence of error $\vects{e}$ to zero can so be adjusted by choosing the proportional and derivative gains $\vectm{K_p}$ and $\vectm{K_d}$, to obtain the desired dynamic response.
+	
+	
+	Based on the above, from the double derivation of \eqref{eq:taus}, we obtain the dynamics
+	\begin{equation} 
+	\vects{\ddot{\uptheta}_m} = \vectm{D}^{-1} (\vects{\ddot{\uptheta}} -\vectm{K_t^{-1}} \vect{\ddot{e}}) \label{eq:taus_deriv} 
+	\end{equation}	
+	
+	
+	\par Figure \ref{fig:full state} reports the schema of the proposed full state feedback control that takes into account the dynamic compensation contributes. Note that the torque sensor reads $\uptau_{s,i}$ and the commanded motor torques  $\uptau_{m,i}$ are net of the gravity compensation term $u_g$.
+	
+	\begin{figure}[]
+		\centering
+		\includegraphics[width=1.0\columnwidth]{FullStateControlFeedback.pdf}
+		\caption{The schema of the full state control feedback with the dynamic compensation.}
+		\label{fig:full state}
+	\end{figure}
+	%\subsubsection{Torque tracking}
+	%
+	%\hl{Queste 3 formule} sono già state scritte precedentemente. ATTENZIONE! Scegli dove metterle!
+	%
+	%\setlength{\arraycolsep}{0.0em}
+	%\begin{equation}
+	%\vects{u_g} = \vects{G}(\vects{D\hat{\theta}_m})
+	%\label{eq:JTCF1_control_law_a2}
+	%\end{equation}
+	%\begin{eqnarray}
+	%\label{eq:JTCF1_control_law_b2}
+	%\vects{u_f} = && - \vects{J_m} \vects{K_t}^{-1} \vects{\ddot{\tau}_s^D} + \vects{B_m} \vects{D \dot{\theta}_m} + \vects{J_m} \vects{\overline{M}^{-1}}  \vects{J^T} \vects{\hat{F}_l}  \nonumber \\
+	%&&{-}\:\vects{\hat{\tau}_d} - {\vects{J}_i^{-1}} \vects{J_m} \vects{\tau_s^D} + \vects{K_p} \vects{e} + \vects{K_d} \vects{\dot{e}}	
+	%\end{eqnarray}
+	%\setlength{\arraycolsep}{5pt}
+	%
+	%\setlength{\arraycolsep}{0.0em}
+	%\begin{eqnarray}
+	%\label{eq:JTCF1_control_law_uf_simple2}
+	%\vects{u_f} = &&\: \vects{B_m}   \vects{D \dot{\theta}_m} +  \vects{J_m} \vects{\overline{M}^{-1}} \vects{J^T} \vects{\hat{F}_l} - {\vects{J_i^{-1}}} \vects{J_m} \vects{\tau_s^D}  \nonumber \\
+	%&&{-}\:\vects{\hat{\tau}_d} + \vects{K_p} \vects{e} + \vects{K_d} \vects{\dot{e}}
+	%\end{eqnarray}
+	%\setlength{\arraycolsep}{5pt}
+	
+	%\subsubsection{Impedance control / haptic rendering} \label{subsub:impedanceCJICF2}
+	%
+	%For the haptic rendering test, the control law was designed as an impedance control. As internal torque loop was used the law  (\ref{eq:JTCF1_control_law_uf_simple}), while the desired end-effector force $F_{ee}^D$ was chosen as
+	%%
+	%\begin{equation}
+	%\label{eq:desiredVE}
+	%\left \{
+	%\begin{aligned}
+	%& F_{ee}^D = 0, \ \ \ \quad \quad \quad \quad \quad \quad \quad \quad  x < x_d \\
+	%& F_{ee}^D = \vectm{K_x} (\vects{x - x_d}) - \vectm{D_x}\vects{\dot{x}}, \quad  x \geq x_d  \\
+	%\end{aligned}
+	%\right .
+	%\end{equation}
+	%%
+	%%\begin{equation}
+	%%\tau^D = \vects{K_x} (\vects{x - x_d}) - \vects{D_x J \dot{\theta}} \frac{\vects{x - x_d}}{\left| \vects{x - x_d} \right|}
+	%%\end{equation}
+	%%
+	%obtaining the equivalent torque control law
+	%%
+	%\setlength{\arraycolsep}{0.0em}
+	%\begin{eqnarray}
+	%\label{eq:JICF1_control_law}
+	%\vects{u_f} = &&\: \vectm{B_m}  \vectm{D}\vects{\dot{\theta}_m} + \vectm{J_m} \vectm{\overline{M}^{-1}} \vectm{J^T} \vects{F_l} -\vects{\tau_d} \nonumber \\ 
+	%&&{-}\: {\vectm{J}_i^{-1}} \vectm{J_m J^T}(\vectm{K_x} (\vects{x - x_d}) - \vectm{D_x}\vects{\dot{x}}) \nonumber \\ 
+	%&&{+}\: \vectm{K_p} \vects{e} + \vectm{K_d} \vects{\dot{e}}
+	%\end{eqnarray}
+	%\setlength{\arraycolsep}{5pt}
+	%%
+	%where x is coordinate along the normal axis to the surface, $x_d$ is the wall coordinate, $K_x$ and $D_x$ are the desired stiffness and damping respectively of the simulated virtual environment.
+	%In (\ref{eq:JICF1_control_law}) for the computation of $\vects{J} = \vects{J}(\vects{\bar{\theta}_l})$ and for the gravity compensation term is used $\vects{\bar{\theta}_l} = \vects{D} \vects{\theta_m}$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A basic state feedback controller (JTFC2)} \label{subsec:JTFC2}
+
+<<<<<<< HEAD
+The basic state feedback controller is derived assuming the following full model dynamics,extending the model introduced for a single joint by Hashimoto \cite{hashimoto1998experimental} where Feedforward Compensation Using Desired
+Torque is presented for  torque control using harmonic drive built-in torque sensor. The JTFC2 model  differs from (\ref{eqn:dinamicaLinkMultiGiunto})  for the absence of the modeling of the damping contribution of the elastic transmission and of external forces:
+=======
+The basic state feedback controller is derived assuming the following full model dynamics (extended the one introduced for a single joint by Hashimoto \cite{hashimoto1998experimental}), that differs from (\ref{eqn:dinamicaLinkMultiGiunto})  for the absence of modeling the external forces:
+>>>>>>> 6dbfcaf521f44d4d6bd9da235f07c6e11997fc64
+
+%\setlength{\arraycolsep}{0.0em}
+%\begin{eqnarray}
+%\label{eq:JICF1_control_law}
+%\vects{u_f} = &&\: \vects{B_m}  \vects{D \dot{\theta}_m} + \vects{J_m} \vects{\overline{M}^{-1}} \vects{J^T} \vects{F_l} -\vects{\tau_d} \nonumber \\ 
+%&&{-}\: {\vects{J}_i^{-1}} \vects{J_m J^T}(\vects{K_x} (\vects{x - x_d}) - \vects{D_x J \dot{\theta}} \frac{\vects{x - x_d}}{\left| \vects{x - x_d} \right|}) \nonumber \\ 
+%&&{+}\: \vects{K_p} \vects{e} + \vects{K_d} \vects{\dot{e}}
+%\end{eqnarray}
+%\setlength{\arraycolsep}{5pt}
+
+
+
+\begin{equation}
+\left \{
+\begin{IEEEeqnarraybox}[][c]{l}
+\vectm{I_m}  \vectm{D} \vects{\ddot{\uptheta}_m} + \vectm{K_t}  ( \vectm{D} \vects{\uptheta_m} - \vects{\uptheta} ) = \vects{\uptau_m} +\vects{\uptau_d}  \\
+\vectm{M}(\vects{\uptheta}) \vects{\ddot{\uptheta}} + \vectm{C}(\vects{\dot{\uptheta}}, \vects{\uptheta}) \vects{\dot{\uptheta}}  + \vectm{K_t}( \vects{\uptheta} - \vectm{D}\vects{\uptheta_m}) + \vects{G}(\vects{\uptheta}) = \vectm{J^T} \vects{F_h}
+\label{dynamic_model_modifiedHashimoto_1}
+\end{IEEEeqnarraybox}
+\right . %\label{eqn:dinamicaMotoreMultiGiunto}
+\end{equation}
+%\label{eqn:dinamicaMotoreMultiGiunto} 
+\normalsize
+
+
+%\begin{equation}
+%\label{dynamic_model_modifiedHashimoto_1}
+%\vectm{J_m}  \vectm{D} \vects{\ddot{\uptheta}_m} + \vectm{K_t}  ( \vectm{D} \vects{\uptheta_m} - \vects{\uptheta_j} ) = \vects{\uptau_m} +\vects{\uptau_d}
+%\end{equation}
+
+%\begin{equation}
+%\label{dynamic_model_modifiedHashimoto_2}
+%\vectm{M}(\vects{\uptheta_j}) \vects{\ddot{\uptheta}_j} + \vectm{C}(\vects{\dot{\uptheta}_j}, \vects{\uptheta_j}) \vects{\dot{\uptheta}_j}  + \vectm{K_t}( \vects{\uptheta_j} - \vectm{D}\vects{\uptheta_m}) + \vects{G}(\vects{\uptheta_j}) = \vectm{J^T} \vects{F_h}
+%\end{equation}
+%
+%\begin{equation}
+%\label{dynamic_model_modifiedHashimoto_3}
+%\vects{\uptau_s} = -\vectm{K_t} (\vectm{D}\vects{{\uptheta}_m} - \vects{\uptheta})
+%\end{equation}
+
+%**************************************************
+%%%%EQUIVALENT MODEL
+%EQUIVALENT MODEL
+%
+%%\footnotesize
+%\begin{equation}
+%\boxed{
+%	\left
+%	\{
+%	\begin{IEEEeqnarraybox}[][c]{l}
+%	\vectm{ I_m  D } \vects{ \ddot{\uptheta}_m}  =  + \vects{\uptau_s} +\vects{\uptau_d} + \vect{u} \\ 
+%	\vects{\ddot{\uptau}_s}   + \vectm{K_t I_i}^{-1} \vects{\tau_s}= \vectm{K_t I_{m}}^{-1} (\vectm{I_{m}} \overline{\vectm{M}}^{-1}  \vectm{J}^T \vects{F_l}  +  \\
+%	\:  -\vects{\uptau_d} - \vect{u})
+%	\end{IEEEeqnarraybox}
+%	\right .
+%}
+%\label{eq:taus}
+%\end{equation}
+%\normalsize
+%%\label{eq:dynamics_eq1}
+%%\label{eq:dynamics_eq2}
+%\setlength{\arraycolsep}{0.0em}
+%
+%\begin{equation}
+%\boxed{
+%	\left
+%	\{
+%	\begin{IEEEeqnarraybox}[][c]{l}
+%	\vectm{  D } \vects{ \ddot{\uptheta}_m}  = I_m ^{-1}  \vects{\uptau_s} +  I_m ^{-1}\vects{\uptau_d} + (- \vectm{I^{-1}_i} \vects{\uptau^D_s} +  \vectm{K^{-1}_t} \vectm{K_d} \vect{\dot{e}} +  \vectm{K^{-1}_t} \vectm{K_p} \vect{e} ) \\ 
+%	\vects{\ddot{\uptau}_s}   + \vectm{K_t I_i}^{-1} \vect{e}= \vectm{K_t I_{m}}^{-1} (\vectm{I_{m}} \overline{\vectm{M}}^{-1}  \vectm{J}^T \vects{F_l}  +  \\
+%	\:  -\vects{\uptau_d} -  ( + \vectm{I_m} \vectm{K^{-1}_t} \vectm{K_d} \vect{\dot{e}} + \vectm{I_m} \vectm{K^{-1}_t} \vectm{K_p} \vect{e} ))
+%	\end{IEEEeqnarraybox}
+%	\right .
+%}
+%\label{eq:taus}
+%\end{equation}
+%
+%*********************************************
+
+
+
+
+Assuming the above full model dynamics, the input control $\vect{u}$ is designed as in (\ref{generic_control_law1}), where for $\vects{u}_g$ is used (\ref{eq:JTCF1_control_law_a}).
+%\begin{equation}
+%\label{generic_control_law2}
+%\vects{u}  =  \vects{u_f} + \vects{u_g}
+%\end{equation}
+%
+%For $\vects{u}_g$ is used (\ref{eq:JTCF1_control_law_a}). %\hl{oppure una stima del tipo $G(K^{-1}_t \uptau_s - D \uptheta_m)$}. \\
+%
+%The basic control law used in \cite{hashimoto1998experimental} can be generalized in case of multi-joint robot and, according to the  proposed notation, it is
+%
+%\setlength{\arraycolsep}{0.0em}
+%\begin{eqnarray}
+%\label{JTFC2_uf_control_law_noSimplified}
+%\vects{u_f} = &&\: -\vectm{J_m} \vectm{{K^{-1}_t}} ( - \vects{{\ddot{\uptau}^D}_s} - \vectm{J^{-1}_i} \vectm{J_m} \vects{{\uptau^D}_s} - \vectm{K_d}(\vects{\dot{\uptau}_s} - \vects{{\dot{\uptau}^D}_s}) \nonumber \\ 
+%&&\: -\vectm{K_p}(\vects{\uptau_s} - \vects{\uptau^D_s})) 
+%\end{eqnarray}
+%\setlength{\arraycolsep}{5pt}
+
+The basic control law used in \cite{hashimoto1998experimental} can be generalized in case of multi-joint robot. Thus using the same notation and conditions of \eqref{eq:conditions}, the control law can be written as a function of desired torque:
+%according to the  proposed notation, if one assumes  $\vect{e}=\vects{\uptau_s}-\vects{\uptau_s^D}$ as the error on sensor torque, given the desired sensor torque  $\vects{\uptau_s^D}$, ans one assume moreover
+% that $\vects{\dot{\uptau}^D}=\vect{0}$ and  $\vects{\ddot{\uptau}^D}=\vect{0}$, so that 
+%$\vect{\dot{e}}=\vects{\dot{\uptau}_s}$ and  $\vect{\ddot{e}}=\vects{\ddot{\uptau}_s}$, 
+
+
+
+\setlength{\arraycolsep}{0.0em}
+\begin{equation}
+\label{JTFC2_control_law_final}
+\vect{u_f} = - \underbrace{\colorboxed{green}{\vectm{I^{-1}_i} \vectm{I_m} \vects{\uptau^D_s}}}_{\text{desired torque}}
+ - \underbrace{\colorboxed{red}{\vectm{I_m} \vectm{K^{-1}_t} (\vects{\ddot{\uptau}_s^D}- \vectm{K_d} \vect{\dot{e}} -  \vectm{K_p} \vect{e}  )}}_{\text{state feedback}}
+\end{equation}
+\setlength{\arraycolsep}{5pt}
+
+
+
+
+The modified dynamics with the control law  (\ref{JTFC2_control_law_final}), leads to the following error dynamics equation:
+
+\setlength{\arraycolsep}{0.0em}
+\begin{equation}
+%\label{JTFC2_error_equation1}
+%\vects{\ddot{\uptheta}_m} &= \vectm{D^{-1}} \vects{\ddot{\uptheta}} - \vectm{D^{-1}} \vectm{K_t^{-1}} \vects{\ddot{e}}
+%\\
+\label{JTFC2_error_equation2}
+\vectm{J^T} \vects{F_l} - \vectm{K_t} \vectm{J^{-1}_m} \vects{\uptau_d} = \vects{\ddot{e}} + \vectm{K_d} \vects{\dot{e}} + (\vectm{K_p} + \vectm{I^{-1}_i} \vectm{K_t}) \vects{e}
+\end{equation}
+\setlength{\arraycolsep}{5pt}
+
+
+%\subsubsection{Torque tracking}
+%
+%\setlength{\arraycolsep}{0.0em}
+%\begin{eqnarray}
+%\label{JTFC2_control_law_noSimplified}
+%\vects{u_f} = &&{-}\: \vects{J_m} \vects{K^{-1}_t} ( -\vects{\ddot{\tau}^D_s} - \vects{J^{-1}_i} \vects{J_m} \vects{\tau^D_s} - \vects{K_d} (\vects{\dot{\tau}_s} - \vects{\dot{\tau}^D_s})  \nonumber \\
+%&&{-}\: \vects{K_p}(\vects{\tau_s} - \vects{\tau^D_s})) 
+%\end{eqnarray}
+%\setlength{\arraycolsep}{5pt}
+%
+%If one assume  $\vects{e}=\vects{\tau_s}-\vects{\tau_s^D}$ as the error on sensor torque, given the desired sensor torque  $\vects{\tau_s^D}$, ans one assume moreover that $\vects{\dot{\tau}^D}=\vects{0}$ and  $\vects{\ddot{\tau}^D}=\vects{0}$,
+%so that 
+%$\vects{\dot{e}}=\vects{\dot{\tau}_s}$ and  $\vects{\ddot{e}}=\vects{\ddot{\tau}_s}$, the (\ref{JTFC2_control_law_noSimplified}) can be rewritten as
+%
+%\begin{equation}
+%\label{JTFC2_control_law}
+%\vects{u_f} = - \vects{J^{-1}_i} \vects{J_m} \vects{\tau^D_s} + \vects{J_m} \vects{K^{-1}_t} \vects{K_d} \vects{\dot{e}} + \vects{J_m} \vects{K^{-1}_t} \vects{K_p} \vects{e}
+%\end{equation}
+
+%\subsubsection{Impedance control / haptic rendering}
+%
+%The impedance control law for the JTFC2 uses the same desired end-effector force as in (\ref{eq:desiredVE}) that leads to the equivalent torque control law
+%%
+%\setlength{\arraycolsep}{0.0em}
+%\begin{eqnarray}
+%\label{eq:JICF2_control_law}
+%\vects{u_f} = &&{-}\: \vectm{J^{-1}_i} \vectm{J_m J^T}(\vectm{K_x} (\vects{x - x_d}) - \vectm{D_x}\vects{\dot{x}}) \nonumber \\
+%&&{+}\: \vectm{J_m}  \vectm{K^{-1}_t} \vectm{K_d} \vects{\dot{e}} + \vectm{J_m} \vectm{K^{-1}_t} \vectm{K_p} \vects{e} 
+%\end{eqnarray}
+%\setlength{\arraycolsep}{5pt}
+%%
+%whit the same terms' meaning.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A passivity-based feedback controller (JTFC3)} \label{subsec:JTFC3}
+
+<<<<<<< HEAD
+The passivity-based state feedback is derived assuming the following full model dynamics (introduced by Ott in \cite{kugi2008passivity}), that differs from  (\ref{eqn:dinamicaLinkMultiGiunto}) for the absence of the motor's viscous friction term $\vectm{B_m } \vectm{D} \vects{\dot{\uptheta}_m} $. 
+%and modeling of disturbance forces $\vects{\uptau_d} $:
+
+=======
+The passivity-based state feedback is derived assuming the following full model dynamics (introduced by Ott in \cite{kugi2008passivity}), that differs from  (\ref{eqn:dinamicaLinkMultiGiunto}) for the absence of the motor's viscous friction term:
+>>>>>>> 6dbfcaf521f44d4d6bd9da235f07c6e11997fc64
+
+\footnotesize
+\begin{equation}
+\left \{
+\begin{IEEEeqnarraybox}[][c]{l}
+\label{dynamic_model_modifiedKugi_1}
+\vectm{I_m}  \vectm{D} \vects{\ddot{\uptheta}_m} + \vectm{C_t}(\vectm{D}\vects{\dot{\uptheta}_m} - \vects{\dot{\uptheta}}) + \vectm{K_t}(\vectm{D}\vects{\uptheta_m} - \vects{\uptheta_j}) = \vects{\uptau_m}  \\
+\vectm{M}(\vects{\uptheta}) \vects{\ddot{\uptheta}} {+}\: \vectm{C}(\vects{\dot{\uptheta}},\vects{\uptheta}) \vects{\dot{\uptheta}} + \vectm{C_t}(\vects{\dot{\uptheta}} - \vectm{D}\vects{\dot{\uptheta}_m})  {+}\: \vects{G}(\vects{\uptheta})+\\
+ + \vectm{K}(\vects{\uptheta} - \vectm{D}\vects{\uptheta_m}) = \vectm{J^T} \vects{F_h} 
+\end{IEEEeqnarraybox}
+\right . %\label{eqn:dinamicaMotoreMultiGiunto}
+\end{equation}
+\normalsize
+
+
+\setlength{\arraycolsep}{0.0em}
+%\begin{equation}
+%\label{dynamic_model_modifiedKugi_1}
+%\vectm{J_m}  \vectm{D} \vects{\ddot{\uptheta}_m} + \vectm{C_t}(\vectm{D}\vects{\dot{\uptheta}_m} - \vects{\dot{\uptheta}_j}) + \vectm{K_t}(\vectm{D}\vects{\uptheta_m} - \vects{\uptheta_j}) = \vects{\uptau_m} 
+%\end{equation}
+%\begin{eqnarray}
+%\label{dynamic_model_modifiedKugi_2}
+%\vectm{M}(\vects{\uptheta_j}) \vects{\ddot{\uptheta}_j} &&{+}\: \vectm{C}(\vects{\dot{\uptheta}_j},\vects{\uptheta_j}) \vects{\dot{\uptheta}_j} + \vectm{C_t}(\vects{\dot{\uptheta}_j} - \vectm{D}\vects{\dot{\uptheta}_m}) \nonumber \\
+%&&{+}\: \vects{G}(\vects{\uptheta_j}) + \vectm{K}(\vects{\uptheta_j} - %\vectm{D}\vects{\uptheta_m}) = \vectm{J^T} \vects{F_h} 
+%\end{eqnarray}
+%\begin{equation}
+%\label{dynamic_model_modifiedKugi_3}
+%\vects{\uptau_s} = - \vectm{K_t} (\vectm{D} \vects{\uptheta} - \vects{\uptheta_j})
+%\end{equation}
+%\setlength{\arraycolsep}{5pt}
+%
+%In \cite{kugi2008passivity} the control law is
+%
+%\begin{equation}
+%\label{generic_control_law3}
+%\vects{u} =  \vects{u_f} + \vects{u_g}
+%\end{equation}
+
+%
+%**************************************************
+%%%%EQUIVALENT MODEL
+%EQUIVALENT MODEL OTT
+%
+%%\footnotesize
+%\begin{equation}
+%\boxed{
+%	\left
+%	\{
+%	\begin{IEEEeqnarraybox}[][c]{l}
+%	\vectm{ I_m  D } \vects{ \ddot{\uptheta}_m} +   = \vectm{K_t}^{-1} \vectm{C_t}\vects{ \dot{\uptau}_s} + \vects{\uptau_s} + \vect{u} \\ 
+%	\vects{\ddot{\uptau}_s}  + \vectm{C_t I_i}^{-1} \vects{\dot{\uptau}_s} + \vectm{K_t I_i}^{-1} \vects{\tau_s}= \vectm{K_t I_{m}}^{-1} (\vectm{I_{m}} \overline{\vectm{M}}^{-1}  \vectm{J}^T \vects{F_l}  +  \\
+%	  - \vect{u})
+%	\end{IEEEeqnarraybox}
+%	\right .
+%}
+%\label{eq:taus}
+%\end{equation}
+%\normalsize
+%%\label{eq:dynamics_eq1}
+%%\label{eq:dynamics_eq2}
+%\setlength{\arraycolsep}{0.0em}
+%
+%
+%
+%
+%%\footnotesize
+%\begin{equation}
+%\boxed{
+%	\left
+%	\{
+%	\begin{IEEEeqnarraybox}[][c]{l}
+%	\vectm{ I_m  D } \vects{ \ddot{\uptheta}_m} +   = \vectm{K_t}^{-1} \vectm{C_t}\vects{ \dot{\uptau}_s} + \vects{\uptau_s} + \\+-\vects{\uptau^D_s} + (\vectm{I_m} \vectm{I^{-1}_{\uptheta}} - \vectm{I}) \vectm{B_m} \vectm{K^{-1}_t} \vect{\dot{e}} + (\vectm{I_m} \vectm{I^{-1}_{\uptheta}} - \vectm{I}) \vect{e} \\ 
+%	\vects{\ddot{\uptau}_s}  + \vectm{C_t I_i}^{-1} \vects{\dot{\uptau}_s} + \vectm{K_t I_i}^{-1} \vects{\tau_s}= \vectm{K_t I_{m}}^{-1} (\vectm{I_{m}} \overline{\vectm{M}}^{-1}  \vectm{J}^T \vects{F_l}  +  \\
+%	-  -\vects{\uptau^D_s} + (\vectm{I_m} \vectm{I^{-1}_{\uptheta}} - \vectm{I}) \vectm{B_m} \vectm{K^{-1}_t} \vect{\dot{e}} + (\vectm{I_m} \vectm{I^{-1}_{\uptheta}} - \vectm{I}) \vect{e})
+%	\end{IEEEeqnarraybox}
+%	\right .
+%}
+%\label{eq:taus}
+%\end{equation}
+%\normalsize
+%%\label{eq:dynamics_eq1}
+%%\label{eq:dynamics_eq2}
+%\setlength{\arraycolsep}{0.0em}
+%
+%*********************************************
+
+In \cite{kugi2008passivity} the control law $\vect{u}$ is designed as in (\ref{generic_control_law1}) where $\vect{u_g}$ are the torques due to the gravity.%For this work $\vect{u_g}$ is calculated as in (\ref{eq:JTCF1_control_law_a}). 
+The controller can optimize
+the matching  of a desired impedance $\vectm{I}_{\theta}$, based on which the term $\vect{u_f}$ after some algebraic transformations can be written as:
+%\hl{oppure una stima del tipo $\vects{G}(\vects{K^{-1}_t \uptau_s} - \vects{D \uptheta_m})$ OPPURE la loro}, while the term $\vects{u_f}$ is given by
+%
+%\begin{equation}
+%\label{control_law_Kugi_1}
+%\vects{u_f} = - \vectm{J_m} \vectm{J^{-1}_{\uptheta}} \vects{\uptau^D_s} - (\vectm{I} - \vectm{J_m} \vectm{J^{-1}_{\uptheta}})(\vects{\uptau_s} + \vectm{B_m} \vectm{K^{-1}_t} \vects{\dot{\uptau}_s})
+%\end{equation}
+%
+%that can be rewritten as
+%\begin{equation}
+%\label{control_law_Kugi_2}
+%\vect{u_f} =  -\vects{\uptau^D_s} + (\vectm{I_m} \vectm{I^{-1}_{\uptheta}} - \vectm{I}) \vectm{B_m} \vectm{K^{-1}_t} \vect{\dot{e}} + (\vectm{I_m} \vectm{I^{-1}_{\uptheta}} - \vectm{I}) \vect{e}
+%\end{equation}
+
+\begin{equation}
+<<<<<<< HEAD
+\label{control_law_Kugi}
+\vect{u_f} =  -  \underbrace{\colorboxed{green}{\vectm{I^{-1}_i} \vectm{I_m} \vects{\uptau^D_s}}}_{\text{desired torque}}+ 
+ \underbrace{\colorboxed{red}{(\vectm{I}-\vectm{I_m} \vectm{I^{-1}_{\uptheta}} )  (\vects{\uptau_s}+  \vectm{C_t}  \vectm{K_t}^{-1}\vects{\dot{\uptau^D_s}})  }}_{\text{state feedback}}
+=======
+\label{control_law_Kugi_2}
+\vect{u_f} =  -\vects{\uptau^D_s} + (\vectm{I_m} \vectm{J^{-1}_{\uptheta}} - \vectm{I}) \vectm{B_m} \vectm{K^{-1}_t} \vects{\dot{e}} + (\vectm{J_m} \vectm{J^{-1}_{\uptheta}} - \vectm{I}) \vects{e}
+>>>>>>> 6dbfcaf521f44d4d6bd9da235f07c6e11997fc64
+\end{equation}
+
+
+%\begin{equation}
+%\label{control_law_Kugi}
+%\begin{align}
+%\vects{u}_f &= \vects{J}_m \vects{J}^{-1}_{\uptheta} \vects{u}' + (\vects{I} - \vects{J}_m \vects{J}^{-1}_{\uptheta})(\vects{\uptau}_s + \vects{B}_m \vects{K}^{-1}_t \vects{\dot{\uptau}}_s) + \vects{K}_d(\vects{\dot{\uptau}}_s - \vects{\dot{\uptau}}^D_s) + \vects{K}_p(\vects{\uptau}_s - \vects{\uptau}^D_s) 
+%\end{align}
+%\end{equation}
+%
+%Ott explains the function of joint torque feedback like a motor inertia reducer, that brings the value of $\vects{B}$ to $\vects{B}_\uptheta$ (in our model $\vects{J}_m$ to $\vects{J}_i$). Using  \eqref{control_law_Kugi} the resulting system dynamics are given by
+%
+%\begin{equation}
+%\label{dynamic_model_modifiedKugi_reducedInertia}
+%\begin{align}
+%\vects{J}_i \vects{\ddot{\uptheta}}_m + \vects{C}_t(\vects{D\dot{\uptheta}}_m - \vects{\dot{\uptheta}}_j) + \vects{K}_t(\vects{D\uptheta}_m - \vects{\uptheta}_j) &=  \vects{u}' \\
+%\vects{M}(\vects{\uptheta}_j) \vects{\ddot{\uptheta}}_j + \vects{C}(\vects{\dot{\uptheta}}_j,\vects{\uptheta}_j) \vects{\dot{\uptheta}}_j + G(\vects{\uptheta}_j) + \vects{C}_t(\vects{D\dot{\uptheta}}_m - \vects{\dot{\uptheta}}_j) + \vects{K}_t(\vects{\uptheta}_j - \vects{D\uptheta}_m) &= \vects{J}^T \vects{F}_h \\
+%\vects{\uptau}_s &= - \vects{K}_t (\vects{D\uptheta}_m - \vects{\uptheta}_j)
+%\end{align}
+%\end{equation}
+%
+%where
+%
+%\begin{equation}
+%\label{kugi_control_input}
+%\begin{align}
+%\vects{u}' &= -\vects{ \uptau}^D_s
+%\end{align}
+%\end{equation}
+For the scope of this work we assumed that $\vectm{I_{\uptheta}} =\vectm{I_{i}}$, so that the modified dynamics within the control law  (\ref{control_law_Kugi_2}) leads to the following error dynamics equations:
+
+\setlength{\arraycolsep}{0.0em}
+
+%%prova
+%\footnotesize
+\begin{equation}
+\begin{IEEEeqnarraybox}[][c]{ll}
+\label{JTFC3_error_equation_1}
+%\vects{\ddot{\uptheta}_m} = \vectm{D^{-1}} \vects{\ddot{\uptheta}_j} - \vectm{D^{-1}} \vectm{K_t^{-1}} \vects{\ddot{e}}  
+%\\
+%\label{JTFC3_error_equation_2}
+\vectm{K_t} \vectm{M^{-1}}\:(\vects{\uptheta})(-\vects{\uptau^D_s} + \vectm{J^T} \vects{F_l}) = \nonumber \\
+\vect{\ddot{e}} {+}\: \vectm{C_t} (  \vectm{I^{-1}_i} +  \vectm{M^{-1}} ) \vect{\dot{e}} 
+{+}\: \vectm{K_t} (  \vectm{I^{-1}_i} +  \vectm{M^{-1}} ) \vect{e} 
+\end{IEEEeqnarraybox}
+\end{equation}
+\setlength{\arraycolsep}{5pt}
+\normalsize
+
+%\subsubsection{Torque tracking}
+%
+%\begin{equation}
+%\label{control_law_Kugi_torque}
+%\vects{u_f} = -\vects{J_m} \vects{J^{-1}_{\theta}} \vects{\tau^D_s} - (\vects{I} - \vects{J_m} \vects{J^{-1}_{\theta}})(\vects{\tau_s} - \vects{B_m} \vects{K^{-1}_t} \vects{\dot{\tau}_s})
+%\end{equation}
+%
+%that can be rewritten as
+%
+%\begin{equation}
+%\label{control_law_Kugi}
+%\vects{u_f} =  -\vects{\tau^D_s} + (\vects{J_m} \vects{J^{-1}_{\theta}} - \vects{I}) \vects{B_m} \vects{K^{-1}_t} \vects{\dot{e}} + (\vects{J_m} \vects{J^{-1}_{\theta}} - \vects{I}) \vects{e}
+%\end{equation}
+
+%\subsubsection{Impedance control / haptic rendering}
+%
+%The impedance control law for the JTFC3 uses the same desired end-effector force as in (\ref{eq:desiredVE}) that leads to the equivalent torque control law
+%%
+%\setlength{\arraycolsep}{0.0em}
+%\begin{eqnarray}
+%\label{eq:JICF3_control_law}
+%\vects{u_f} = &&{-}\: \vectm{J^T}(\vectm{K_x} (\vects{x - x_d}) - \vectm{D_x} \vects{\dot{x}}) \nonumber \\
+%&&{+}\: (\vectm{J_m} \vectm{J^{-1}_{\theta}} - \vectm{I}) \vectm{B_m} \vectm{K^{-1}_t} \vects{\dot{e}} + ( \vectm{J_m} \vectm{J^{-1}_{\theta}} - \vectm{I}) \vects{e}
+%\end{eqnarray}
+%\setlength{\arraycolsep}{5pt}
+%%
+%whit the same terms' meaning.
+
+%In (\ref{JICF2_control_law}) for the computation of $\vects{J} = \vects{J}(\vects{\bar{\theta}_l})$ and for the gravity compensation term is used:
+%
+%\begin{equation}
+%\label{JICF2_control_law_theta_l_1}
+%\vects{\bar{\theta}_{l,n+1}} = \vects{T_c} (\vects{\theta_{l,n}})
+%\end{equation}
+%\begin{equation}
+%\label{JICF2_control_law_theta_l_2}
+%\vects{T_c} (\vects{\theta_l}) = \vects{\theta_m} - \vects{K^{-1}_t} (\vects{G}(\vects{\theta_l}) - \vects{J^T}(\vects{\theta_l}) \vects{K_x} (\vects{x - x_d}))
+%\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Impedance control / haptic rendering} \label{sub:impedanceCJICF}
+
+The three torque control laws are used as inner feedback loop of the impedance control used to test the exoskeleton in the haptic rendering task. The desired end-effector force $F_{ee}^D$ is due to the interaction with the virtual environment impedance. More in detail, the desired force is defined by:
+%
+\begin{equation}
+\label{eq:desiredVE}
+\left \{
+\begin{aligned}
+& \vect{ F_{ee}^D} = 0, \ \ \ \quad \quad \quad \quad \quad \quad \quad \quad  x < x_d \\
+& \vect{F_{ee}^D} = \vectm{K_x} (\vects{x - x_d}) - \vectm{D_x}\vects{\dot{x}}, \quad  x \geq x_d  \\
+\end{aligned}
+\right .
+\end{equation}
+%
+%\begin{equation}
+%\tau^D = \vects{K_x} (\vects{x - x_d}) - \vects{D_x J \dot{\theta}} \frac{\vects{x - x_d}}{\left| \vects{x - x_d} \right|}
+%\end{equation}
+%
+%obtaining the equivalent torque control law
+%%
+%\setlength{\arraycolsep}{0.0em}
+%\begin{eqnarray}
+%\label{eq:JICF1_control_law}
+%\vects{u_f} = &&\: \vectm{B_m}  \vectm{D}\vects{\dot{\theta}_m} + \vectm{J_m} \vectm{\overline{M}^{-1}} \vectm{J^T} \vects{F_l} -\vects{\tau_d} \nonumber \\ 
+%&&{-}\: {\vectm{J}_i^{-1}} \vectm{J_m J^T}(\vectm{K_x} (\vects{x - x_d}) - \vectm{D_x}\vects{\dot{x}}) \nonumber \\ 
+%&&{+}\: \vectm{K_p} \vects{e} + \vectm{K_d} \vects{\dot{e}}
+%\end{eqnarray}
+%\setlength{\arraycolsep}{5pt}
+%
+where $\vect{x}$ is the coordinate along the normal axis to the surface, $\vect{x_d}$   is the wall coordinate, $\vectm{K_x}$ and $\vectm{D_x}$ are the desired stiffness and damping respectively of the simulated virtual environment.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,95 @@
+The authors present a design of a 5-joint, 4 degree of actuation upper
+limb exoskeleton for rehabilitation purposes, with a high gear ratio
+transmission. This makes the exoskeleton non-backdrivable. The main
+contribution is the evaluation of three different control architectures
+for the joints. The authors compare a Full State Feedback Controller, a
+`basic' state feedback controller (a simple proportional-derivative
+task space controller), and a passivity based controller. A summary of
+the hardware design is given, along with an observer architecture to
+estimate the derivatives of the angle from encoder measurements.
+
+While many of the techniques are standard, what is commendable is that
+the authors implemented this control architecture in real hardware. The
+importance of this should not be understated. This represents a
+significant amount of work. With some revisions to enhance the clarity
+of the presentation, This could be an impactful paper.
+
+The biggest issue I have with the paper is that the reader has to get
+to the end of the paper to discover what the authors' central
+contribution is. The thesis of the paper, found in the conclusion, is
+that it provides evidence that with a suitable control architecture, it
+is not necessary for a rehabilitation upper limb exoskeleton to be
+backdrivable by the user. This is important. However, from the start of
+the paper, it is not clear where the paper is going. The introduction
+is overly long, and cites work only loosely related to the work
+presented, e.g. works on lower limb exoskeletons. It then launches into
+the (previously published) description of the hardware, and the
+narrative as written gives the impression that this is a paper about a
+new exoskeleton, when in fact the novelty is the control architecture
+for the exoskeleton, particularly a comparative hardware evaluation of
+several alternatives. This should be made clear from the outset, even
+in the abstract. The abstract should list the types of controllers
+evaluated and which was found to be superior in the given context.
+
+Throughout the paper, there are some odd choices that were made in the
+work. For example, to combat misalignment of the strain gauge on the
+spring element of the torque sensor, the authors use a neural network
+with training data. There are well-established methods to address this,
+such as differential pairs and using a hardware calibration. Why the
+neural network? It seems to cost more in the way of development for
+something that is less reliable. The two-mass model in Fig. 11 is used
+to approximate the linkages of the robot, but this neglects the dynamic
+equations of this links. Some justification might be found for this in
+the fact that the gear ratio is on the order of 100, but the authors
+make no such justification, then they mention joint torques due to
+centripetal and coriolis terms, which would suggest they are including
+these terms, but the narrative is ambiguous. They speak of a natural
+frequency in the discussion around Fig. 12, which suggests a
+linearization was performed (where the resonance would shift with
+operating point). Fig. 12 shows the magnitude plot but not the phase
+plot. The phase would be illustrative of how well the linearization
+captures the behavior of the system. The estimation architecture in
+(13) appears to be a predictor architecture only, yet (17) suggests a
+sort of Leuenberger Observer architecture (although they call it a
+Kalman Filter) No indication of how the observer gains were calculated
+or covariance matrices used is given. I am also not clear on why they
+needed to observe the joint accelerations to implement the controller.
+Typically in robotic systems (and others driven by Newtonian Mechanics)
+the acceleration is not a state of the system (unless it happens to
+emerge in place of other positions and velocities by some state
+transformation). The rationale for observing the second derivative is
+not clear. Equation (17) and the surrounding discussion does not help
+the reader evaluate what physical quantities correspond to y (other
+than looking at the products of the state), and in the block diagram on
+the next page it seems that torque is what is measured, so it
+ambiguous. It was not clear why in the experiment they had the user
+grab the end effector of the exoskeleton rather than wearing it. If the
+user is wearing the exoskeleton, there would likely be forced applied
+to the various links along their length, which would "break" the
+traditional formulation that depends on computing joint torques through
+the Jacobian transpose, which may call into question some of the
+formulation presented.
+
+In section IV, the three controller types are listed, but it would be
+helpful to say, "We evaluated three different controllers". Until the
+end of the narrative, I was under the false impression that the other
+two controllers were embellishments of the first, whereas they were
+three completely disparate solutions.
+
+By and large the figures are well done. I might suggest that the
+authors display Fig. 21 in three-dimensional space rather than three
+separate curves superimposed on the same plot for each coordinate. 
+
+The authors also have several English mistakes that appear throughout,
+for example, using "performances" instead of "performance", and often
+use the wrong preposition in idomatic expressions, e.g. "inspired to"
+rather than "inspired by". There are also several long wordy
+expressions, e.g. "due to the absence of elastic or damping elements",
+which should be expressed more concisely in English, e.g. "which have
+no elastic or damping elements". These are minor, but should be
+resolved in a revision as they disrupt the reader.
+
+Ultimately I believe that a new draft that is tightly focused and
+guides the reader to understand the key elements of the work conducted
+and its significance throughout the read, rather than finally
+understanding during the discussion section, it will be a good paper.

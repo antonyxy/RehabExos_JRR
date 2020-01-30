@@ -1,0 +1,111 @@
+\section{Appendix I}
+
+Let us study the effect under static condition of the application of a motor torque compensating for the non-linearity due to gravity, estimated as 
+$\vect{\hat{G}}(\vectm{D} \vects{\hat{\uptheta}_m})$, with:
+
+\begin{equation}
+\vects{\uptau_m}=  \vect{\hat{G}}(\vectm{D} \vects{\hat{\uptheta}_m})+\vect{u}
+\label{eq:inputForce}
+\end{equation}
+
+where  $\vect{u}$ represents the actual control command.
+Under static conditions it can be found that:
+
+\begin{equation}
+\vect{u}=-  \vectm{J}^T \vect{F_h} +\vect{G}( \vects{\uptheta}) - \vect{\hat{G}}(\vectm{D} \vects{\hat{\uptheta}_m})  \simeq - \vectm{J}^T \vect{F_h}
+\label{eq:inputInStaticCondition}
+\end{equation}
+since $\vect{\hat{G}}(\vectm{D} \vects{\hat{\uptheta}_m}) \simeq \vect{G}( \vects{\uptheta})$. Under dynamic conditions, the incomplete cancellation of the gravity component due to the elasticity of the joint transmission can be modeled by introducing a disturbance term $\vects{\delta} \vect{g}=\vect{G}( \vects{\uptheta}) - \vect{\hat{G}}(\vectm{D} \vect{\hat{\uptheta}_m})$, that can be summed up 
+to $\vect{F_h}$ as a disturbance noise supported by the operator.
+
+
+So a variable apparent dynamic force $\vect{F_{dyn}}$ can be defined   such that
+$\vectm{J}^T \vects{\Delta} \vect{ F_{dyn}}( \vects{\dot{\uptheta}}, \vects{\uptheta})  =- \vects{\Delta} \vectm{M} ( \vects{\uptheta}) \vects{\ddot{\uptheta}} - \vectm{C}( \vects{\dot{\uptheta}}, \vects{\uptheta})  \vects{\dot{\uptheta}}  $
+The new variable $\Delta \vect{F_{dyn}}$,  representing uncompensated and/or unmodeled dynamics, can be considered as a disturbance force and considered as a contribution term to the overall external load  force  $\vect{F_l}$ expressed by:
+\begin{equation}
+\vect{F_l}= \underbrace{\vects{F_h}}_{\text{exogenous}} +  \underbrace{\vects{\delta}\vect{g}  +  \vects{\Delta} \vect{F_{dyn}}}_{\text{endogenous}}
+\label{eq:extraForces}
+\end{equation}
+
+
+
+This in general states that the external forces are the sum of exogenous $\vects{F_h} $ and endogenous inputs  $ \delta \vects{g} + \Delta \vects{F_{dyn}}$ . While exogenous inputs are unknown a priori and depending on human operator behavior, endogenous inputs can be estimated and compensated to some extent.
+
+So introducing the variable substitution expressed by \eqref{eq:taus}, dynamic equations can be reformulated as follow:
+
+\setlength{\arraycolsep}{0.0em}
+\begin{eqnarray}
+\label{eq:eq1}
+\vectm{I_m  D} \vects{\ddot{\uptheta}_m} + \vectm{B_m  D}  \vects{\dot{\uptheta}_m} += \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s} + \vects{\uptau_s} + \vect{u} + \vects{\uptau_d} \label{eq_first_formulation_ddthetam}
+\end{eqnarray}
+\begin{eqnarray}
+\label{eq:eq2}
+{\vectm{\overline{M}}} \vects{\ddot{\uptheta}}  +  \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s} + \vects{\uptau_s} = \vectm{J}^T  \vect{F_{l}}
+\end{eqnarray}
+\setlength{\arraycolsep}{5pt}
+
+But we know that
+
+\begin{equation}
+\label{eq:thetadotand2dot}
+\begin{aligned}
+\vectm{K_t}^{-1}\vects{\ddot{\uptau}_s} + \vectm{D} \vects{\ddot{\uptheta}_m}  & =   \vects{\ddot{\uptheta}}  \\
+%\vectm{K_t}^{-1}\vects{\dot{\uptau}_s} + \vectm{D} \vects{\dot{\uptheta}_m}   & =    \vects{\dot{\uptheta}}  
+\end{aligned}
+\end{equation}
+
+Then making substitution of (\ref{eq:thetadotand2dot}) in  (\ref{eq:eq2}) to eliminate $ \vects{\ddot{\uptheta}}$, we obtain:
+
+\begin{equation}
+\overline{\vectm{M}} \vectm{ D}\vects{\ddot{\uptheta}_m } + \overline{\vectm{M}}\vectm{ K_t}^{-1} \vects{\ddot{\uptau}_s} + \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s}  + \vects{\uptau_s}  =  \vectm{J}^T \vects{F_l}
+\end{equation}
+
+and then replacing from \eqref{eq_first_formulation_ddthetam} $\vectm{D}\vects{\ddot{\uptheta}_m}=\vectm{I_m}^{-1} \{ -\vectm{B_m  D}  \vects{\dot{\uptheta}_m} +  \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s} + \vects{\uptau_s} +\vects{u}  +\vects{\uptau_d} \} $
+and defining  $\vectm{I_i}^{-1}= \overline{\vectm{M}}^{-1}+\vectm{I_m}^{-1}$,  dynamics equations can be put in the following form:
+
+
+
+
+
+\setlength{\arraycolsep}{0.0em}
+%\begin{equation}
+%\vectm{ I_m  D } \vects{ \ddot{\uptheta}_m} + \vectm{B_m D}\vects{\dot{\uptheta}_m} = \vectm{K_t}^{-1} \vectm{C_t}\vects{ \dot{\uptau}_s} + \vects{\uptau_s} + \vect{u} + \vects{\uptau_d}
+%\label{eq:dynamics_eq1}
+%\end{equation}
+\begin{eqnarray}
+\label{eq:dynamics_eq2}
+\vects{\ddot{\uptau}_s} && + \vectm{C_t I_i}^{-1} \vects{\dot{\uptau}_s} + \vectm{K_t I_i}^{-1} \vects{\uptau_s} =\vectm{K_t } \overline{\vectm{M}}^{-1} \vectm{ J}^T \vect{F_l}  \nonumber \\
+&&{+}\:   \vectm{K_t   I_m}^{-1} ( \vectm{B_m D}\vects{\dot{\uptheta}_m}  -  \vects{\uptau_d} - \vect{u})
+\end{eqnarray}
+\setlength{\arraycolsep}{5pt}
+
+
+%
+%*****************************
+%CALCOLI DI VERIFICA
+%
+%\begin{eqnarray}
+%(\vectm{I_m}^{-1} \{ -\vectm{B_m  D}  \vects{\dot{\uptheta}_m} +  \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s} + \vects{\uptau_s} + \vects{u}  +  \vects{\uptau_d} \}) +\\ +  \vectm{ K_t}^{-1} \vects{\ddot{\uptau}_s} + \overline{\vectm{M}}^{-1} \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s}  +   \overline{\vectm{M}}^{-1} \vects{\uptau_s}  = \overline{\vectm{M}}^{-1} \vectm{J}^T \vects{F_l}
+%\end{eqnarray}
+%
+%some matrices are diagonal so we can reduce
+%
+%\begin{multline}
+%  - \vectm{I_m}^{-1}\vectm{B_m  D}  \vects{\dot{\uptheta}_m} + \vectm{I_m}^{-1} \vectm{C_t} \vects{\dot{\uptau}_s} \\+\vectm{I_m}^{-1} \vects{\uptau_s} +\vectm{I_m}^{-1}  \vects{u} \\ + \vectm{I_m}^{-1} \vects{\uptau_d}   +  \vectm{ K_t}^{-1} \vects{\ddot{\uptau}_s} + \overline{\vectm{M}}^{-1} \vectm{C_t} \vects{\dot{\uptau}_s}  +\\   \overline{\vectm{M}}^{-1} \vects{\uptau_s}  = \overline{\vectm{M}}^{-1} \vectm{J}^T \vects{F_l}
+%\end{multline}
+%
+%
+%\begin{multline}
+% +  \vects{\ddot{\uptau}_s}+ \vectm{K_t}\vectm{I_m}^{-1} \vectm{C_t} \vects{\dot{\uptau}_s} +\vectm{K_t} \vectm{I_m}^{-1} \vects{\uptau_s} + \vectm{K_t}\vectm{I_m}^{-1}  \vects{u} \\ + \vectm{K_t} \vectm{I_m}^{-1} \vects{\uptau_d}    + \overline{\vectm{M}}^{-1} \vectm{C_t}  \vects{\dot{\uptau}_s}  +   \vectm{K_t} \overline{\vectm{M}}^{-1} \vects{\uptau_s}  = \\ \vectm{K_t} \vectm{I_m}^{-1}\vectm{B_m  D}  \vects{\dot{\uptheta}_m}+ \vectm{K_t} \overline{\vectm{M}}^{-1} \vectm{J}^T \vects{F_l}
+%\end{multline}
+%
+%
+%some matrices are diagonal so we can reduce
+%
+%\begin{multline}
+%+  \vects{\ddot{\uptau}_s}+   \overline{\vectm{M}}^{-1} \vectm{C_t}  \vects{\dot{\uptau}_s} + \vectm{I_m}^{-1} \vectm{C_t}   \vects{\dot{\uptau}_s} +\vectm{K_t} \vectm{I_m}^{-1} \vects{\uptau_s}  \\   +   \vectm{K_t} \overline{\vectm{M}}^{-1} \vects{\uptau_s}  = \\ \vectm{K_t} \overline{\vectm{M}}^{-1} \vectm{J}^T \vects{F_l} + \\+\vectm{K_t} \vectm{I_m}^{-1} (\vectm{B_m  D}  \vects{\dot{\uptheta}_m}-  \vect{u})-  \vectm{K_t} \vectm{I_m}^{-1} \vects{\uptau_d} 
+%\end{multline}
+%
+%*************************************
+
+This form of the dynamics equation is useful for defining a full-state feedback control law and an optimal observer for the estimation of joint torque.

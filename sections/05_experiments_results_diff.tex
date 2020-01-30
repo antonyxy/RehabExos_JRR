@@ -1,0 +1,401 @@
+\section{Experiments and Results} \label{sec:experimentsResults}
+
+The performance of the torque and impedance \DIFdelbegin \DIFdel{controls have been }\DIFdelend \DIFaddbegin \DIFadd{controllers were }\DIFaddend assessed by experimental tests  \DIFaddbegin \DIFadd{both in terms of }{\em \DIFadd{transparency}} \DIFadd{and }{\em \DIFadd{haptic rendering}} \DIFadd{performance measures}\DIFaddend . 
+The tests show how the torque controls behave in constant and varying desired torque tracking.
+The first one is the transparency test in which the robot tries to keep the joint torque at zero Nm while the user is moving the exoskeleton.
+The second test is the haptic rendering with a slanted flat surface with different simulated stiffness.
+More details on each test are reported in the subsections below.
+\par The implemented control laws (\ref{eq:JTCF1_control_law_uf_simple}), (\ref{JTFC2_control_law_final}) and (\ref{control_law_Kugi_2}) have been set using the model parameters. The proportional and derivative PD gains ($K_p$ and $K_d$) have been chosen to obtain a desired error dynamics, \DIFdelbegin \DIFdel{more in detail }\DIFdelend \DIFaddbegin \DIFadd{specifically }\DIFaddend the form that guarantees the minimum ITAE index. Notice that the control laws (\ref{eq:JTCF1_control_law_uf_simple}) and (\ref{JTFC2_control_law_final}) have two degrees of freedom, i.e. $K_p$ and $K_d$ can be independently chosen, whereas the control law (\ref{control_law_Kugi_2}) exhibits \DIFdelbegin \DIFdel{a 1 }\DIFdelend \DIFaddbegin \DIFadd{only one }\DIFaddend degree of freedom, thus the two control gains are linked and they are calculated as a function of the desired inertia \DIFdelbegin \DIFdel{$J_{\theta}$}\DIFdelend \DIFaddbegin \DIFadd{$I_{\theta}$}\DIFaddend .
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Transparency} \label{subsec:transparency}
+
+For the transparency test, 
+\DIFaddbegin \DIFadd{a performance measurements was adopted based on multi-joint transparency as in \mbox{%DIFAUXCMD
+\cite{just2018exoskeleton}
+}%DIFAUXCMD
+were the pHRI torque on each joint has been analyzed.
+More in detail, }\DIFaddend two kinds of trials have been done.
+The first type of trial uses the JTFC1 control law described in the subsection \ref{subsec:JTFC1} in order to verify how much the dynamics compensations improve the desired torque tracking.
+The second type of trials \DIFdelbegin \DIFdel{are useful to }\DIFdelend compare the three control laws and \DIFaddbegin \DIFadd{its aim is }\DIFaddend to understand how the terms of the \DIFdelbegin \DIFdel{control inputs }\DIFdelend \DIFaddbegin \DIFadd{controllers }\DIFaddend are related to the desired torque tracking.
+\DIFdelbegin \DIFdel{During the transparency tests the user has been }\DIFdelend \DIFaddbegin 
+
+\DIFadd{The transparency tests were performed recruiting 10 healthy subjects (males, 8 right-handed) with a mean age: 30.9 $\pm$ 5.2 years. All  subjects were asked to sign a written informed consent for participating to the study.
+}
+
+\DIFadd{The two transparency tests have a slightly difference: in the first trials the user moves  the exoskeleton wit no constraints, grabbing the end-effector handle (interaction forces are exerted only at the end-effector). Whereas, during the second transparency test, the user is }\DIFaddend linked with the exoskeleton \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{at }\DIFaddend 2 \DIFdelbegin \DIFdel{points: the  arm in order to transmit the shoulder movement, }\DIFdelend \DIFaddbegin \DIFadd{anchor points at the  arm }\DIFaddend and the forearm \DIFdelbegin \DIFdel{in order to exchange the elbow movement.
+}%DIFDELCMD < \par %%%
+\DIFdel{In order to validate the interaction torque control and to evaluate the torque tracking performance, an }\DIFdelend \DIFaddbegin \DIFadd{(by grasping the end-effector handle).
+An }\DIFaddend additional force sensor \DIFdelbegin \DIFdel{has been }\DIFdelend \DIFaddbegin \DIFadd{was }\DIFaddend mounted on the end-effector of the exoskeleton to measure the actual forces $\vects{F_h^*}$  applied by the user \DIFdelbegin \DIFdel{. 
+}\DIFdelend \DIFaddbegin \DIFadd{at the handle interface. 
+}
+
+\par  \DIFaddend As transparency index \DIFdelbegin \DIFdel{the measured }\DIFdelend \DIFaddbegin \DIFadd{we evaluated the mean absolute pHRI torque and the mean peak absolute pHRI torque as in \mbox{%DIFAUXCMD
+\cite{just2018exoskeleton}
+}%DIFAUXCMD
+. The measured end-effector forces provides only a qualitative index in the transparency test when a multi-contact interaction with the exoskeleton occurs. Conversely, the measured }\DIFaddend end effector norm force \DIFdelbegin \DIFdel{and the reflected torques at the joints }\DIFdelend have been used \DIFdelbegin \DIFdel{.
+The reflected torques at the joint are calculated as $\vects{\tau_s^*}=\vects{J^T F_h^*}$ and then compared to the interaction torques estimated by the optimal observer.
+}\DIFdelend \DIFaddbegin \DIFadd{to quantitative evaluate the controller performances during single-contact interactions.
+%DIF > The reflected torques at the joint are calculated as $\vects{\tau_s^*}=\vects{J^T F_h^*}$ and then compared to the interaction torques estimated by the optimal observer.
+}\DIFaddend 
+
+\subsubsection{How dynamic compensation affects the transparency} \label{subsubsec:compensationAndTransparency}
+
+In order to understand how the dynamic compensation affects the transparency the scheme of figure \DIFdelbegin \DIFdel{\ref{fig:full state} }\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:fullstate} }\DIFaddend has been implemented, that uses the JTFC1 control law plus the dynamics terms multiplied by $\alpha$, with $0 \leq \alpha \leq 1$.
+
+\DIFaddbegin \DIFadd{In this test, the subject is asked to perform sinusoidal movements at each joint with a range of $10 ~ deg \simeq 0.2 ~ rad $ with a frequency of $0.5 ~ Hz$, thus similar acceleration are imprinted to the exoskeleton joint for both \textquotedblleft dynamic compensation\textquotedblright }\ \DIFadd{and \textquotedblleft no compensation conditions\textquotedblright.
+}
+
+\DIFaddend The experimental results for torque tracking, with a desired torque $\vects{\tau_s^D=0}$, are shown for the second joint $J_2$ in \figurename \ \ref{fig:torque_validation}, that is the joint with the highest link inertia.  \DIFdelbegin \DIFdel{A user has moved without constraints the exoskeleton, grabbing the force sensor mounted at the end effector. }\DIFdelend The control was set to follow his movement at zero-torque \DIFdelbegin \DIFdel{without }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend (\figurename \ \DIFdelbegin \DIFdel{\ref{fig:torque_validation_nocomp}) and with }\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:torque_validation}, left) and without }\DIFaddend (\figurename \ \DIFdelbegin \DIFdel{\ref{fig:torque_validation_comp}}\DIFdelend \DIFaddbegin \DIFadd{\ref{fig:torque_validation}, right}\DIFaddend ) dynamics compensation.
+ \DIFaddbegin 
+
+\DIFaddend \par The upper plots show the joint position (\DIFdelbegin \DIFdel{blue }\DIFdelend \DIFaddbegin \DIFadd{black }\DIFaddend solid line)\DIFdelbegin \DIFdel{and acceleration (red dotted }\DIFdelend \DIFaddbegin \DIFadd{, the central plots display the estimated acceleration (gray dashed }\DIFaddend line), to demonstrate the movements were similar in both cases. The lower plots represent the interaction torques estimated by the observer (\DIFdelbegin \DIFdel{blue solid }\DIFdelend \DIFaddbegin \DIFadd{gray dashed }\DIFaddend line) and measured by the force sensor (\DIFdelbegin \DIFdel{red dotted }\DIFdelend \DIFaddbegin \DIFadd{black solid }\DIFaddend line). Even if the estimated torques are similar in both cases, with dynamics compensation the actual interaction forces are lower, demonstrating that torque tracking is more precise and the user has to compensate less for the links dynamics.
+
+\DIFdelbegin %DIFDELCMD < \begin{figure}[htb]
+%DIFDELCMD < 	%%%
+\DIFdelend %DIF > \begin{figure}[htb]
+%DIF > 	\centering
+%DIF > 	\subfigure[Without dynamics compensation]{ \includegraphics[width=1\columnwidth]{a_p_ts2_vs_ets2_nocomp.pdf}\label{fig:torque_validation_nocomp}}
+%DIF > 	\subfigure[With dynamics compensation]{  \includegraphics[width=1\columnwidth]{a_p_ts2_vs_ets2_comp.pdf}\label{fig:torque_validation_comp}}
+%DIF > 	\caption{Comparison between the measured torque $\tau_s$ and calculated torque by force sensor \hldoing{units of acc wrong, which joint??}}
+%DIF > 	\label{fig:torque_validation}
+%DIF > \end{figure}
+\DIFaddbegin 
+
+\begin{figure*}[htb]
+	\DIFaddendFL \centering
+	\DIFdelbeginFL %DIFDELCMD < \subfigure[Without dynamics compensation]{ \includegraphics[width=1\columnwidth]{a_p_ts2_vs_ets2_nocomp.pdf}\label{fig:torque_validation_nocomp}}
+%DIFDELCMD < 	\subfigure[With dynamics compensation]{  \includegraphics[width=1\columnwidth]{a_p_ts2_vs_ets2_comp.pdf}\label{fig:torque_validation_comp}}
+%DIFDELCMD < 	%%%
+\DIFdelendFL \DIFaddbeginFL \def\svgwidth{2\columnwidth}
+	\begin{footnotesize}
+		\input{imgRevised/dynamic_compens_vs_no_compens.pdf_tex}
+	\end{footnotesize}
+	\DIFaddendFL \caption{Comparison between the measured torque $\tau_s$ and calculated torque by force sensor \DIFaddbeginFL \DIFaddFL{for joint $J_2$.}\DIFaddendFL }
+	\label{fig:torque_validation}
+\DIFdelbeginFL %DIFDELCMD < \end{figure}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \end{figure*}
+\DIFaddend 
+
+\subsubsection{Comparison between the three torque controllers JTFC1, JTFC2 and JTFC3}
+\DIFaddbegin 
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\columnwidth]{experiment_setup}
+	\caption{\DIFaddFL{Experimental setup of the transparency test.}}
+	\label{fig:experimentalSetup}
+\end{figure}
+
+\DIFaddend For this kind of trials the three joint torque controls presented in the section \ref{sec:Full_state_feedback_controllers} were tested with a desired torque set to zero ($\vects{\tau_s^D=0}$)\DIFdelbegin \DIFdel{as for the trials in }\DIFdelend \DIFaddbegin \DIFadd{.%DIF >  as for the trials in the subsection \ref{subsubsec:compensationAndTransparency}. 
+The tests were conducted as in \mbox{%DIFAUXCMD
+\cite{just2018exoskeleton}
+}%DIFAUXCMD
+: the participants were asked to track a reference point on a circular path, displayed on a screen, with the end-effector parallel to }\DIFaddend the \DIFdelbegin \DIFdel{subsection \ref{subsubsec:compensationAndTransparency}. 
+}%DIFDELCMD < \par %%%
+\DIFdel{In order to have comparable results and repeatability of trials, the transparency of the exoskeleton was tested with the same subject while he was trying to perform the same circular trajectory at the end effector, with the same velocity using the three different controls. The subject had visual cue (a circle of 150 mm of radius) }\DIFdelend \DIFaddbegin \DIFadd{coronal plane in front of them. Figure \ref{fig:experimentalSetup} shows a subject }\DIFaddend while performing the \DIFdelbegin \DIFdel{task.
+To evaluate the transparency performances only data in the same range of speed were used.
+Despite the user tried to track the desired trajectory, the executed ones and their speeds were someway influenced by the used torque control. The average speed at the end effector of the three controls are listed in the }%DIFDELCMD < \tablename \ %%%
+\DIFdel{\ref{tab:transparencySpeeds}.
+}\DIFdelend \DIFaddbegin \DIFadd{transparency task.
+The diameter of the circle was equal to $0.3 ~ m$ and the center position was set to the subject's chest height to move in a typical activities of daily living workspace. Circles have been performed at two speed levels: slow ($45 ~ \frac{deg}{s}$) and fast ($90 ~ \frac{deg}{s}$) in accordance with \mbox{%DIFAUXCMD
+\cite{just2018exoskeleton}
+}%DIFAUXCMD
+. 10 repetitions for each speed level. 
+Moreover, the sequence of the controllers was randomly assigned to each participant to mitigate potential order effects.
+}
+
+
+%DIF > \hldoing{adding a figure showing circle location}
+
+%DIF > \hldoing{simulating test with two more subjects??.}
+%DIF > Despite the user tried to track the desired trajectory, the executed ones and their speeds were someway influenced by the used torque control. The average speed at the end effector of the three controls are listed in the \tablename \ \ref{tab:transparencySpeeds}.
+\DIFaddend %
+%\begin{table}[!t]
+%	\renewcommand{\arraystretch}{1.3}
+%	\caption{The natural frequency of the joints}
+%	\label{tab:transparencySpeeds}
+%	\centering
+%	\begin{tabular}{|c|c|c|}
+%		\hline
+%		\bfseries Control & \bfseries Avg. speed [$m/s$] & \bfseries Std. dev. [$m/s$]\\
+%		\hline\hline
+%		JTFC1 & 0.4198 & 0.0810\\
+%		\hline
+%		JTFC2 & 0.4460 & 0.1374\\
+%		\hline
+%		JTFC3 & 0.3867 & 0.1213\\
+%		\hline
+%	\end{tabular}
+%\end{table}
+\DIFdelbegin %DIFDELCMD < \begin{table}[]
+%DIFDELCMD < 	%%%
+\DIFdelend %DIF > \begin{table}[]
+%DIF > 	\renewcommand{\arraystretch}{1.3}
+%DIF > 	\caption{Mean and Std. Dev. of the e.e. speed in the transparency experiments}
+%DIF > 	\label{tab:transparencySpeeds}
+%DIF > 	\centering
+%DIF > 	\begin{tabular}{c c c}
+%DIF > 		\hline \hline
+%DIF > 		\bfseries Control & \bfseries Avg. speed [$m/s$] & \bfseries Std. dev. [$m/s$]\\
+%DIF > 		\hline
+%DIF > 		JTFC1 & 0.4198 & 0.0810\\
+%DIF > 		JTFC2 & 0.4460 & 0.1374\\
+%DIF > 		JTFC3 & 0.3867 & 0.1213\\
+%DIF > 		\hline \hline
+%DIF > 	\end{tabular}
+%DIF > \end{table}
+%DIF > 
+\DIFaddbegin \DIFadd{The comparative multi-joint transparency study is depicted in Fig. \ref{fig:transparencyJointErrors} whereas the real trajectories performed by a representative subject can be shown in the }\figurename \ \DIFadd{\ref{fig:traittorie3D}. 
+}
+
+\begin{figure}[htb]
+	\centering
+%DIF > 	\includegraphics[width=0.99\columnwidth]{traiettorieCircolari2}
+\def\svgwidth{0.95\columnwidth}
+	\begin{footnotesize}
+		\input{imgRevised/circles2.pdf_tex}
+	\end{footnotesize}
+	\caption{\DIFaddFL{The trajectories performed during the transparency test using the three control laws.}}
+	\label{fig:traittorie3D}
+\end{figure}
+
+\DIFadd{Fig. \ref{fig:transparencyJointErrors} shows that the full-state feedback controller (JTFC1) had the lowest mean torque and mean peak torque in the slow scenario and is more transparent respect to JTFC2 and JTFC3 in terms of interaction torques. Data were statistically compared with a paired t-test ($\alpha=$ 0.05) between the JTFC1 and JTFC2 conditions, and JTFC1 and JTFC3 conditions. Outliers were removed before any further analysis using a Thompson Tau test. The obtained  mean torque results are statistically significant ($p < 0.01$) for joints J1, J2 and J4 in both slow and fast conditions. The joint J3 implements the same PD feedback control in all the experiments and it performs equally in all speed and controllers conditions.
+The obtained results for JTFC1 are comparable with ones presented in \mbox{%DIFAUXCMD
+\cite{just2018exoskeleton}
+}%DIFAUXCMD
+and are reported in detail in }\tablename{} \DIFadd{\ref{tab:meanTorquesTransparency}.
+}
+
+\begin{table}[b]
+	\DIFaddendFL \renewcommand{\arraystretch}{1.3}
+	\caption{Mean \DIFaddbeginFL \DIFaddFL{torque }\DIFaddendFL and \DIFdelbeginFL \DIFdelFL{Std. Dev. of the e.e. speed in the transparency experiments}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{mean peak torque for JTFC1}\DIFaddendFL }
+	\DIFdelbeginFL %DIFDELCMD < \label{tab:transparencySpeeds}
+%DIFDELCMD < 	%%%
+\DIFdelendFL \DIFaddbeginFL \label{tab:meanTorquesTransparency}
+	\DIFaddendFL \centering
+	\DIFdelbeginFL %DIFDELCMD < \begin{tabular}{c c c}
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \begin{tabular}{c c c c c c}
+		\DIFaddendFL \hline \hline
+		\bfseries \DIFdelbeginFL \DIFdelFL{Control }\DIFdelendFL & \DIFaddbeginFL \DIFaddFL{Speed }& \DIFaddendFL \bfseries \DIFdelbeginFL \DIFdelFL{Avg. speed }%DIFDELCMD < [%%%
+\DIFdelFL{$m/s$}%DIFDELCMD < ] %%%
+\DIFdelendFL \DIFaddbeginFL \DIFaddFL{J1 }\DIFaddendFL & \bfseries \DIFdelbeginFL \DIFdelFL{Std. dev. }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{J2 }& \bfseries \DIFaddFL{J3   }& \bfseries \DIFaddFL{J4 }\\
+		\hline
+		\multirow{2}\DIFaddFL{*}{\DIFaddFL{Mean torque }\DIFaddendFL [\DIFdelbeginFL \DIFdelFL{$m/s$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Nm}\DIFaddendFL ]\DIFaddbeginFL } & \DIFaddFL{Slow  }&  \DIFaddFL{0.54 }& \DIFaddFL{0.77 }& \DIFaddFL{0.57 }& \DIFaddFL{0.39}\DIFaddendFL \\ 
+		\DIFdelbeginFL %DIFDELCMD < \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{JTFC1 }\DIFdelendFL & \DIFdelbeginFL \DIFdelFL{0.4198 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Fast }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{0.0810}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.58  }& \DIFaddFL{0.88 }& \DIFaddFL{0.63 }& \DIFaddFL{0.44}\DIFaddendFL \\
+		\DIFdelbeginFL \DIFdelFL{JTFC2 }\DIFdelendFL \DIFaddbeginFL \hline
+		\multirow{2}\DIFaddFL{*}{\DIFaddFL{Mean peak torque }[\DIFaddFL{Nm}]} \DIFaddendFL & \DIFdelbeginFL \DIFdelFL{0.4460 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Slow  }\DIFaddendFL &  \DIFdelbeginFL \DIFdelFL{0.1374}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.35 }& \DIFaddFL{2.05 }& \DIFaddFL{1.07 }& \DIFaddFL{0.93 }\DIFaddendFL \\ 
+		\DIFdelbeginFL \DIFdelFL{JTFC3 }\DIFdelendFL & \DIFdelbeginFL \DIFdelFL{0.3867 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Fast }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{0.1213}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.36  }& \DIFaddFL{2.36 }& \DIFaddFL{1.24 }& \DIFaddFL{1.06}\DIFaddendFL \\
+		\hline \hline
+	\end{tabular}
+\end{table}
+%DIF < 
+\DIFdelbegin \DIFdel{The real trajectories can be shown in the }%DIFDELCMD < \figurename \ %%%
+\DIFdel{\ref{fig:traittorie3D}. }%DIFDELCMD < \begin{figure}[htb]
+%DIFDELCMD < 	%%%
+\DIFdelend \DIFaddbegin 
+
+\begin{figure*}[htbp]
+	\DIFaddendFL \centering
+	\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.99\columnwidth]{traiettorieCircolari2}
+%DIFDELCMD < 	%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{The trajectories performed during the transparency test using the three control laws.}}
+	%DIFAUXCMD
+%DIFDELCMD < \label{fig:traittorie3D}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < %%%
+%DIF < \begin{figure}[htb]	
+%DIF < 	\centering
+%DIF < 	\includegraphics[width=0.7\columnwidth]{\figpath{traiettorieCircolariPianoXY}}
+%DIF < 	\label{fig:traiettorieXY}
+%DIF < 	\caption{The Rehab-Exos CAD model showing overall kinematics and actuator structure}
+%DIF < \end{figure}
+\DIFdelendFL %DIF > \includegraphics[width=1\columnwidth]{figure/FDT_Act.pdf}
+	\DIFaddbeginFL \def\svgwidth{1.8\columnwidth}
+	\begin{footnotesize}
+		\input{imgRevised/multijoint_transparency_analysis.pdf_tex}
+	\end{footnotesize}
+	\caption{}
+	\label{fig:transparencyJointErrors}
+\end{figure*}
+
+\DIFaddend %
+\DIFdelbegin %DIFDELCMD < \par %%%
+\DIFdel{As the reader can see, the red trajectories (the ones obtained by using the control JTFC2) are less accurate due to the limited torque }\DIFdelend \DIFaddbegin 
+
+\DIFadd{The }\DIFaddend control \DIFdelbegin \DIFdel{performance}\DIFdelend \DIFaddbegin \DIFadd{JTFC1 that implements a full-state feedback control performs better because it models in a more accurate and general way the joint dynamics. Moreover, the control JTFC1 compensates for the modeled effects. Notice that, at joint level, the control JTFC3 behaves more similar to JTFC1 rather than to the control JTFC2, in fact the torque errors of the control JTFC1 and JTFC3 seems to be correlated to the link inertia}\DIFaddend .
+Moreover, from the analysis of the control torque errors at the joints (\figurename \ \ref{fig:transparencyJointErrors}), it can be seen that the control JTFC2 exhibits an average error that is independent from the link inertia. The torque error over link inertia ratio for the elbow joint is the highest\DIFdelbegin \DIFdel{and this leads to a greater disturbance on the fine trajectory execution.
+}%DIFDELCMD < \begin{figure}[htb]
+%DIFDELCMD < 	\centering
+%DIFDELCMD < 	\includegraphics[width=1\columnwidth]{erroriTrasparenzaGiunti}
+%DIFDELCMD < 	%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdel{The torque errors of the 3 controllers for joints 1, 2 and 4.}}
+	%DIFAUXCMD
+%DIFDELCMD < \label{fig:transparencyJointErrors}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < %%%
+%DIF < 
+\DIFdel{The average force measured at the end effector are shown }\DIFdelend \DIFaddbegin \DIFadd{.
+}
+
+\DIFadd{For the sake of completeness, we reported measured end-effector position, joint torques and e.e. forces of a part of the transparency test }\DIFaddend in \figurename \ \ref{fig:transparencyEeErrors} \DIFaddbegin \DIFadd{that allows for qualitative analysis}\DIFaddend .
+\begin{figure}[htb]
+	\centering
+	\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=1\columnwidth]{erroreForzaEETrasparenza}
+%DIFDELCMD < 	%%%
+\DIFdelendFL %DIF > 	\includegraphics[width=1\columnwidth]{erroreForzaEETrasparenza}
+	\DIFaddbeginFL \def\svgwidth{1\columnwidth}
+	\begin{footnotesize}
+		\input{imgRevised/transparency_JTFC1_example.pdf_tex}
+	\end{footnotesize}
+	\DIFaddendFL \caption{The force error at the end effector of the 3 controllers.}
+	\label{fig:transparencyEeErrors}
+\end{figure}
+%
+\DIFaddbegin 
+
+\DIFaddend \par \DIFdelbegin \DIFdel{The value of the end-effector forces provides an overall index of the exoskeleton transparency with a given torque control (when $\vects{\tau_s^D=0}$). The control }\DIFdelend \DIFaddbegin \DIFadd{To complete the transparency analysis, we performed a }\emph{\DIFadd{smoothness}} \DIFadd{analysis as proposed in equation 3 of \mbox{%DIFAUXCMD
+\cite{jarrasse2010methodology}
+}%DIFAUXCMD
+. It is a jerk metric, i.e. the average rate of change of acceleration during a movement. Large values of the smoothness index indicate that many corrections are made during the movement by the subject. 
+The values of the smoothness index for the 3 controllers have been reported in }\tablename{} \DIFadd{\ref{tab:jerkTransparency}.
+Differently from the mean torque index, the controller }\DIFaddend JTFC1 \DIFdelbegin \DIFdel{that implements a full-state feedback control performs better because it models in a more accurate and general way the joint dynamics. 
+Moreover, the control }\DIFdelend \DIFaddbegin \DIFadd{do not exhibit the lowest smoothness value. We suppose this result is related to the less damped behavior performed by the exoskeleton with }\DIFaddend JTFC1\DIFdelbegin \DIFdel{compensates for the modeled effects.
+Notice that, at joint level, the control JTFC3 behaves more similar to JTFC1 rather than to the control }\DIFdelend \DIFaddbegin \DIFadd{, whereas both }\DIFaddend JTFC2 \DIFdelbegin \DIFdel{, in fact the torque errors of the control JTFC1 }\DIFdelend and JTFC3 \DIFdelbegin \DIFdel{seems to be correlated to the link inertia.}\DIFdelend \DIFaddbegin \DIFadd{offer a "viscous-like" resistance to the user motion that help smoothing the e.e. trajectory.
+}\DIFaddend 
+
+\DIFaddbegin \begin{table}[b]
+	\renewcommand{\arraystretch}{1.3}
+	\caption{\DIFaddFL{Smoothness index for the 3 controllers}}
+	\label{tab:jerkTransparency}
+	\centering
+	\begin{tabular}{c c c c}
+		\hline \hline
+		\bfseries \DIFaddFL{Speed }& \bfseries \DIFaddFL{JTFC1 }& \bfseries \DIFaddFL{JTFC2 }& \bfseries \DIFaddFL{JTFC3 }\\
+		\hline
+		\DIFaddFL{Slow  }&  \DIFaddFL{80.87 }& \DIFaddFL{47.10 }& \DIFaddFL{47.80}\\ 
+		\DIFaddFL{Fast }& \DIFaddFL{107.46  }& \DIFaddFL{85.48 }& \DIFaddFL{119.08 }\\
+		\hline \hline
+	\end{tabular}
+\end{table}
+\DIFaddend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Haptic rendering}
+
+The implemented torque controls can be used to render the interaction forces exchanged with a virtual surface of a given stiffness and damping, acting as impedance controls. In these tests the contact forces at the end-effector are proportional to the penetration length of the end-effector into the virtual wall surface and to its speed. The force is then converted to desired torques at the joints by multiplying the equation defined in (\ref{eq:desiredVE}) by the transpose of the Jacobian, where the \DIFdelbegin \DIFdel{equations }\DIFdelend \DIFaddbegin \DIFadd{control commands }\DIFaddend (\ref{eq:JTCF1_control_law_uf_simple}), (\ref{JTFC2_control_law_final}) and (\ref{control_law_Kugi_2} \DIFdelbegin \DIFdel{) }\DIFdelend have been used respectively for JFTC1, JFTC2 and JFTC3.
+%The design of the exoskeleton allows to control the torque on every joint, so it is possible to render an interaction force not only at the end effector but on every link of the robot. In this case, in equation (\ref{jacobian}) a modified Jacobian will be used to convert forces not applied on the end effector.
+\par In the experiments the user grabs the exoskeleton only at the end effector without applying any other force on the links. In this way, the forces measured by the end-effector's force sensor have been used to evaluate the overall system performance since these forces are not involved for the torque control.
+\par The rendering experiments were composed by four different type of trials as depicted in \figurename \ \ref{fig:renderingTestType}:
+\DIFdelbegin %DIFDELCMD < \begin{itemize}
+%DIFDELCMD < 	\item %%%
+\DIFdel{T1: }\DIFdelend \DIFaddbegin \begin{IEEEdescription}
+\item[{\bf T1 }] \DIFadd{\hspace{0.5 cm} }{\em  \DIFaddend "Slide on surface"\DIFaddbegin } \DIFaddend experiment with moderate forces;
+\DIFdelbegin %DIFDELCMD < \item %%%
+\DIFdel{T2: }\DIFdelend \DIFaddbegin \item[{\bf T2 }] \DIFadd{\hspace{0.5 cm} }{\em \DIFaddend "Slide on surface" \DIFaddbegin } \DIFaddend experiment with high forces;
+\DIFdelbegin %DIFDELCMD < \item %%%
+\DIFdel{T3: }\DIFdelend \DIFaddbegin \item[{\bf T3 }] \DIFadd{\hspace{0.5 cm} }{\em \DIFaddend "Collision with a surface"\DIFaddbegin }  \DIFaddend experiment with moderate speed;
+\DIFdelbegin %DIFDELCMD < \item %%%
+\DIFdel{T4: }\DIFdelend \DIFaddbegin \item[{\bf T4 }] \DIFadd{\hspace{0.5 cm} }{\em \DIFaddend "Collision with a surface" \DIFaddbegin } \DIFaddend experiment with high speed.
+\DIFdelbegin %DIFDELCMD < \end{itemize}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \end{IEEEdescription}
+\DIFaddend 
+
+During the T1 and T2 trials the experimenter slided the end-effector on the surface without sudden variations of penetration. The difference between the T1 and T2 trials is the average level of force along the orthogonal axes at the surface.
+In the T3 and T4 trials the aim is to test the dynamic performance of the controls, so the experimenter pushed the end-effector on the surface. The difference between the T3 and T4 trials is the average slope of the desired force profiles.
+The 4 tests have been evaluated for each controls and with three different environment parameters, in order to consider a low, an intermediate and a high stiff wall. 
+\begin{figure}[htb]
+	\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=1\columnwidth]{proveRendering}
+%DIFDELCMD < 	%%%
+\DIFdelendFL %DIF > 	\includegraphics[width=1\columnwidth]{proveRendering}
+\DIFaddbeginFL \def\svgwidth{1\columnwidth}
+	\begin{footnotesize}
+		\input{imgRevised/hapticTest.pdf_tex}
+	\end{footnotesize}
+	\DIFaddendFL \caption{The four trial types during an haptic rendering test. The desired forces is plotted with red dashed lines, the measured orthogonal forces are plotted with blue solid lines while the two tangential components are with magenta and black solid lines.}
+	\label{fig:renderingTestType}
+\end{figure}
+
+\par The \tablename \ \ref{tab:meanForcesRendering} reports the three environment parameters, the average forces involved in the T1 and T2 trials, the average force peaks and the average slope of the T3 and T4 trials.
+%\begin{table}[!t]
+%	\renewcommand{\arraystretch}{1.3}
+%	\caption{The average forces involved in the T1 and T2 trials, the average force peaks and the average slope of the T3 and T4 trials.}
+%	\label{tab:meanForcesRendering}
+%	\centering
+%	\begin{tabular}{|c|c|c|c|c|}
+%		\hline
+%		\bfseries Env. Params. & \bfseries T1 & \bfseries T2 & \bfseries T3 & \bfseries T4 \\
+%		\hline\hline
+%		5 kN/m  &  22.22 $N$ & 50.79 $N$ & 83.33 $N$ & 112.33 $N$\\ 2 Ns/m & - & - & 127.28 $N/s$ & 518.49 $N/s$\\ 
+%		\hline
+%		20 kN/m &  22.81 $N$ & 66.14 $N$ & 103.97 $N$ & 136.97 $N$\\ 7 Ns/m & - & - & 159.25 $N/s$ & 550.99 $N/s$\\
+%		\hline
+%		40 kN/m  &  24.98 $N$ & 59.37 $N$ & 88.32 $N$ & 126.20 $N$\\ 10 Ns/m & - & - & 120.39 $N/s$ & 616.03 $N/s$\\
+%		\hline
+%	\end{tabular}
+%\end{table}
+\begin{table}[]
+	\renewcommand{\arraystretch}{1.3}
+	\caption{The average forces involved in the T1 and T2 trials, the average force peaks and the average slope of the T3 and T4 trials.}
+	\label{tab:meanForcesRendering}
+	\centering
+	\begin{tabular}{c c c c c}
+		\hline \hline
+		\bfseries Env. Params. & \bfseries T1 & \bfseries T2 & \bfseries T3 & \bfseries T4 \\
+		\hline
+		5 kN/m  &  22.22 $N$ & 50.79 $N$ & 83.33 $N$ & 112.33 $N$\\ 2 Ns/m & - & - & 127.28 $N/s$ & 518.49 $N/s$\\ 
+		\hline
+		20 kN/m &  22.81 $N$ & 66.14 $N$ & 103.97 $N$ & 136.97 $N$\\ 7 Ns/m & - & - & 159.25 $N/s$ & 550.99 $N/s$\\
+		\hline
+		40 kN/m  &  24.98 $N$ & 59.37 $N$ & 88.32 $N$ & 126.20 $N$\\ 10 Ns/m & - & - & 120.39 $N/s$ & 616.03 $N/s$\\
+		\hline \hline
+	\end{tabular}
+\end{table}
+
+\par To evaluate the performances of the three different torque controls three indexes have been proposed, i.e. 
+\DIFdelbegin %DIFDELCMD < \begin{itemize}
+%DIFDELCMD < 	%%%
+\DIFdelend \DIFaddbegin 
+
+\setlength{\IEEEiednormlabelsep}{0.7 cm}
+\begin{IEEEitemize}
+	\DIFaddend \item the mean of the norm of the error force vectors;
+	\item the mean of the absolute value of the error of the orthogonal component;
+	\item the mean of the angle between the desired forces and the measured ones.
+\DIFdelbegin %DIFDELCMD < \end{itemize}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \end{IEEEitemize}
+\DIFaddend 
+
+\begin{figure}[htb]
+	\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=1\columnwidth]{erroriForzeAngoliRendering}
+%DIFDELCMD < 	%%%
+\DIFdelendFL %DIF > 	\includegraphics[width=1\columnwidth]{erroriForzeAngoliRendering}
+	\DIFaddbeginFL \def\svgwidth{1\columnwidth}
+	\begin{footnotesize}
+		\input{imgRevised/hapticRendResults.pdf_tex}
+	\end{footnotesize}
+	\DIFaddendFL \caption{At the top, the average of the modulus of the error force vectors at the end effector of the 3 controllers in the rendering task. For this test, 3 stiffness has been evaluated: 5kN/m (small), 20 kN/m (medium) and 40 kN/m (high). In the middle, the average error forces of the orthogonal component. At the bottom, the average angle between the desired force vectors and the measured ones.}
+	\label{fig:renderingErrors}
+\end{figure}
+
+\par The results can be shown in the \figurename \ \ref{fig:renderingErrors}. The first graph shows the average difference between the rendered forces by the controls and the desired forces with an aggregate index, i.e. the norm of the error vector. From this graph the reader can see that in all the condition the JTFC1 control performs better then the others, in fact the mean of the error is around 10 N in all the three cases.
+\par To decompose the informations given in the first graph, other two indexes are considered, that are the average error of the orthogonal component of the force and the angle between the desired and the rendered forces. Unlike the norm of the error vector, these two indexes give information on the amplitude and the direction of the undesired force components. The second graph highlights that the JTFC1 control leads to an average error of 5 N along the task direction independently from the environment parameters, that is a good result coupled with the exhibited stable contact with the surface in every condition.
+The third graph is substantially in agreement with the previous ones. \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+%DIF < %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DIF < %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DIF < %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DIFdelend

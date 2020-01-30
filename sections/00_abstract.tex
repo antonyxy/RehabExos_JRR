@@ -1,0 +1,21 @@
+\begin{abstract}
+%In the last two decades, the research on exoskeletons has been increasing. The mechanical architecture of the exoskeleton directly influences its performances in term of torque and position control. 
+%Another aspect is the complexity of the joint design and the number of the required actuators and sensors per joint.
+This work presents a new upper-limb exoskeleton design endowed with compact elastic joints with torque sensors based on strain gauges. 
+The torque sensor performance and the design aspects that affect unwanted non-axial moment load crosstalk are addressed in this study.
+%The joints have a high reduction ratio and can display an output torque of 150 Nm, nevertheless, they are transparent by control.
+% exhibiting  a low error in both haptic force rendering and position control. 
+ 
+% Good transparency and force rendering are obtained by model-based full-state feedback control. The control schema takes into account part of the torque sensor non-linearities. Performances have been evaluated using different controls showing that this solution is a valid trade-off among exoskeleton complexity, maximum torque, transparency and haptic capabilities.
+%%
+%
+A new state-feedback interaction torque controller is proposed by modeling the multi-dof non-linear system dynamics and providing compensation of non-linear effects such as friction and gravity components. The proposed controller confers transparency to the joints.
+%To improve transparency a new state-feedback interaction torque control is proposed modeling the multi-dof non-linear system dynamics and providing compensation of non-linear effects such as friction and gravity components. %, in order to achieve an accurate estimation of human interaction force.
+
+% This is accomplished by a single joint optimum observer that ensures joint torque tracking, while a centralized control estimates and compensates for the dynamics of the whole system. 
+ %Moreover, we have evaluated the effect of dynamic compensation on system transparency highlighting good results.
+To validate the proposed controller as well as the chosen mechanical architecture, the full-state feedback controller was  compared with two  other benchmark state-feedback controllers,  in two tasks of  the zero desired force tracking ({\em transparency}) and  contact with a virtual stiff wall ({\em haptic rendering}). 
+The {\em transparency} benchmarking test was performed experimentally with 10 subjects at two different reference speeds. In both experimental conditions, the proposed joint torque controller achieved higher performance, demonstrating how an active impedance by control can reach optimal performance if suitable state feedback is employed.
+ 
+ 
+\end{abstract}

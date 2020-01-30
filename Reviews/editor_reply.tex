@@ -1,0 +1,134 @@
+% Point one description 
+\begin{editorpoint}
+The paper referenced above presents a design of a 5-joint, 4 degree of
+actuation upper limb exoskeleton for rehabilitation purposes, featuring
+compact elastic actuated joint with integrated torque sensing. An
+additional major contribution of the paper is the evaluation of three
+different joint torque control architectures (one novel,2 two
+standard). The authors compare a Full State Feedback Controller, a
+`basic' state feedback controller (a simple PD task space controller),
+and a passivity based controller. A summary of the hardware design and
+an observer architecture to estimate the derivatives of the angle from
+encoder measurements are given.
+
+	The reviewers find the paper to be a sufficient contribution to
+	warrant publication but confirm multiple ways in which the paper must
+	be improved. The authors are requested to review the individual
+	reviewer comments and respond to them in a revised version with
+	rebuttal. A few key issues should especially be addressed:
+	
+ \end{editorpoint}
+
+% Our reply
+
+	
+\begin{reply}
+	We thank the editor for the precise summary, the contents of the revised paper have been extended to consider a more standardized evaluation of performance of the proposed controller, as detailed in the following answers below.
+	All the reviewers comments have been duly considered and implemented.
+	
+
+
+\end{reply}
+
+
+\begin{editorpoint}
+	1. R2 and R5 articulate that the paper’s major contribution is the
+	demonstration that, with a suitable control architecture, it is not
+	necessary for a rehabilitation upper limb exoskeleton to be
+	backdrivable by the user. However, this finding is not well-defined
+	early in the paper, and is a surprising and impactful conclusion that
+	appears only at the end of the manuscript. The novelty of the work
+	should be clearly defined in abstract and conclusion, so that the
+	reader can clearly follow the work to this conclusion.
+
+	
+
+	
+\end{editorpoint}
+
+% Our reply
+
+
+\begin{reply}
+We agree, the introduction has been substantially modified and claims have been better pointed out in the introduction. In particular concerning this point a specific sentence was added in hte introduction:
+	
+		
+		\hrulefill
+		
+		{\em 
+			In particular, to improve transparency we propose a new interaction torque control that take into account the multi-dof non linear system dynamics and provide a compensation of non-linear effects such as inertial and gravity components, to achieve an accurate estimation of human interaction force.
+			This is accomplished by a single joint optimum observer that ensures joint torque tracking, while a centralized control estimates and compensates for the dynamics of the whole system. 
+			%Moreover, we have evaluated the effect of dynamic compensation on system transparency highlighting good results.
+			\par To validate the proposed control as well as the chosen mechanical architecture, the full-state feedback control was  compared with two alternative controllers,  a  feedback control (JTFC2) and a passivity-based feedback control (JTFC3), in two tasks: the zero desired force tracking ({\em transparency}) and the contact with a virtual stiff wall ({\em haptic rendering}). 
+			The {\em transparency} benchmarking test among the 3 controllers was performed experimentally with 10 subjects and two different reference velocities, according to the evaluation procedure already tested in \cite{just2018exoskeleton}, in order to achieve comparable benchmark results.
+			
+			For what concerns haptic rendering, we evaluate at geometrical level the quantitative and qualitative behavior of the proposed controller and we compared it with the other two implemented controllers.
+			We find  that in both experimental conditions,  the proposed joint torque control allows to achieve higher performance both in term of transparency and haptic rendering, demonstrating how an active impedance by control  can reach optimal performance if suitable state feedback is employed.
+		}
+			
+			
+			\hrulefill
+	
+\end{reply}
+
+
+\begin{editorpoint}
+	2. All reviewers agree that terms and experimental results should be
+	more clearly defined. R2 emphasizes the use of the term transparency,
+	R3 requests more specific details on consistency during experiments and
+	perhaps even a figure picturing the testing setup, and R5 requests a
+	clear definition of what is being evaluated early in the paper.
+	
+
+	
+\end{editorpoint}
+
+% Our reply
+
+
+\begin{reply}
+All the comments have been detailed taken into consideration.
+In particular concerning the first aspect, not only a definition of transparency was formally added in the introduction, but also a more precise methodology was defined for the evaluation of the system according to previous works and reviewers suggestions.
+Experiments have been made again on a larger sample of subjects (10 subjects) and in more conditions, to respond to some criticism from reviewers, so that reported experimental data are now more complete. A picture of the experimental set-up during testing conditions was added.
+A clearer definition of evaluation methodology was as well provided, together with a complete set of new figures reporting current experimental results.
+	
+	
+	
+\end{reply}
+
+\begin{editorpoint}
+	3. The authors should clearly articulate the extensions in this paper
+	compared to reference [29].
+	
+	The revised paper should clearly guide the reader to understand the key
+	elements of the work conducted and their significance throughout the
+	manuscript. 
+	
+\end{editorpoint}
+
+% Our reply
+
+
+\begin{reply}
+
+The major contributions of this work with respect to the previous conference paper are:
+\begin{itemize}
+	\item  the modeling and the study of the torque sensor by using analytical and FEM simulation approaches. The paper widely investigates the issues related to the use of a torque sensor embedded in the joint, i.e. the sensor sensitivity to disturbance torques, and possible causes to explain the phenomena are proposed.
+	\item the (analytical) comparison of the proposed full-state feedback-based control with other two state feedback control laws found in literature (see Sec. IV.A, IV.B and IV.C). The two control strategies have been chosen amongst strategies proposed for robot with similar mechanical features, i.e. the presence of a joint torque sensor and the presence of a harmonic drive type reducer. 
+	\item experiments for the evaluation of transparency using a circular trajectory, at different speeds, involving 10 subjects, for 3 different controllers.
+	\item experiments for the evaluation of haptic rendering performance using 3 different controllers.
+\end{itemize}
+
+This work provides an evidence from a design and control point of view that the use of joint with an embedded torque sensor is a constructive choice that favors compactness, robustness while preserving high accuracy and transparency as well as the possibility to use the exoskeleton to render virtual environment with high impedance.  
+On the second major contribute, the two control laws have been implemented and then compared with our proposed control strategy, thus a numerical evaluation of system transparency and force rendering accuracy with different controls are provided based on the same hardware.
+The results highlight the proposed control is a valid strategy to enhance the human-robot interaction with the proposed hardware solution.
+
+		
+\end{reply}
+
+
+%\shortpoint{ 
+%	Can you make any analysis on which controller is better(significance
+%	analysis), or are therefore more subjects needed? }
+%\shortreply{ We thank the reviewer for this consideration. The results we obtained from new the experiment are statistically significant. We perform a paired t-test, and the interaction torque differences between JTFC1 and JTFC2 and, between JTFC1 and JTFC3 are significant with $p < 0.01$ for joints 1, 2 and 4 in both slow and fast speed.}
+

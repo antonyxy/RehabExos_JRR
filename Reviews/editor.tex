@@ -1,0 +1,108 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                            % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{green}                              % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+
+
+% personal data
+%\name{John}{Doe}
+\title{ IEEE T-RO 18-0568}  
+\quote{Paper IEEE T-RO 18-0568 resubmission: cover letter}                              % optional, remove / comment the line if not wanted
+%\address{street and number}{postcode city}{country}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+%\phone[mobile]{+1~(234)~567~890}                   % optional, remove / comment the line if not wanted
+%\email{john@doe.org}                               % optional, remove / comment the line if not wanted
+%\email{john@doe.org}                               % optional, remove / comment the line if not wanted
+\homepage{https://www.santannapisa.it/en/institute/tecip/human-robot-interaction}                            % optional, remove / comment the line if not wanted
+                               % optional, remove / comment the line if not wanted
+
+
+%\quote
+\name{Dr. Domenico Chiaradia,}{Prof. Antonio Frisoli}
+%                              % optional, remove / comment the line if not wanted
+\address{PERCRO lab}{Scuola Superiore Sant'Anna}{Pisa, Italy}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+%%\phone[mobile]{+1~(234)~567~890}                   % optional, remove / comment the line if not wanted
+%%\phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
+%%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\email{d.chiaradia@santannapisa,it, a.frisoli@santannapisa.it}                               % optional, remove / comment the line if not wanted
+%                     % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+
+
+\begin{document}
+	%-----       letter       ---------------------------------------------------------
+
+
+
+	
+	% recipient data
+	\recipient{Prof. Kevin Lynch, Prof. I-Ming Chen}{Editor in Chief, Editor, IEEE Transaction on Robotics \\ \vspace{1 cm} \textbf{ Subject: Paper IEEE T-RO 18-0568 }	}
+	\date{August 15, 2019}
+%	\opening{ Dear Editor in Chief, dear Editor}
+	\opening{ Dear Editor in Chief, dear Editor,}
+	\closing{Yours faithfully,}
+%	\enclosure[Attached]{Manuscript + reply to reviewers}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+	\enclosure[Attached]{Revised manuscript + reply to reviewers}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+%	\subject{}
+	\makelettertitle
+
+%it is our great pleasure to submit for revision a revised version of our original paper entitled 18-0568
+%"Modeling, Design and Control of the Rehab-Exos, a Joint Torque
+%Controlled Upper-Limb Exoskeleton"
+it is our great pleasure to submit for revision a revised version of our original paper  entitled 
+{\em  "Modeling, Design and Control of the Rehab-Exos, a Joint Torque
+Controlled Upper-Limb Exoskeleton"}
+%by Domenico Chiaradia, Massimiliano Solazzi, Rocco Vertechy, Antonio
+by Domenico Chiaradia, Massimiliano Solazzi, Rocco Vertechy, and Antonio
+%Frisoli submitted   for possible publication to IEEE Transactions on Robotics as IEEE T-RO 18-0568,
+Frisoli already  submitted   for possible publication to IEEE Transactions on Robotics as IEEE T-RO 18-0568.
+
+%Following first decision and invitation to "resubmit a
+%revised version of ... work addressing the reviewers concerns and to
+%be considered as a Regular Paper", we have duly revised our work implementing reviewers' suggestions
+Following first decision and invitation from Editor to "resubmit as new'', we have completely revised the paper and addressed all the reviewers concenrns and suggestion.
+We are now submitting this new revised version for evaluation, wuth the hope that can be revised by the same reviewers again.
+
+	
+
+	\makeletterclosing
+	
+\end{document}
+
+
+%% end of file `template.tex'.

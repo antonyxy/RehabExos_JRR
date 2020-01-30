@@ -1,0 +1,30 @@
+\begin{thebibliography}{}
+
+\bibitem[Colgate and Brown, 1994]{colgate1994factors}
+Colgate, J.~E. and Brown, J.~M. (1994).
+\newblock Factors affecting the z-width of a haptic display.
+\newblock In {\em Proceedings of the 1994 IEEE International Conference on
+  Robotics and Automation}, pages 3205--3210. IEEE.
+
+\bibitem[Diolaiti et~al., 2005]{diolaiti2005criterion}
+Diolaiti, N., Niemeyer, G., Barbagli, F., and Salisbury, J.~K. (2005).
+\newblock A criterion for the passivity of haptic devices.
+\newblock In {\em Proceedings of the 2005 IEEE International Conference on
+  Robotics and Automation}, pages 2452--2457. IEEE.
+
+\bibitem[Jarrasse et~al., 2010]{jarrasse2010methodology}
+Jarrasse, N., Tagliabue, M., Robertson, J.~V., Maiza, A., Crocher, V.,
+  Roby-Brami, A., and Morel, G. (2010).
+\newblock A methodology to quantify alterations in human upper limb movement
+  during co-manipulation with an exoskeleton.
+\newblock {\em IEEE Transactions on neural systems and Rehabilitation
+  Engineering}, 18(4):389--397.
+
+\bibitem[Just et~al., 2018]{just2018exoskeleton}
+Just, F., {\"O}zen, {\"O}., B{\"o}sch, P., Bobrovsky, H., Klamroth-Marganska,
+  V., Riener, R., and Rauter, G. (2018).
+\newblock Exoskeleton transparency: feed-forward compensation vs. disturbance
+  observer.
+\newblock {\em at-Automatisierungstechnik}, 66(12):1014--1026.
+
+\end{thebibliography}

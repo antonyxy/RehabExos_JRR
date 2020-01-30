@@ -1,0 +1,101 @@
+The authors demonstrate the joint torque controlled Rehab-Exo
+exoskeleton, which shows promising results for transparency and haptic
+rendering tasks. Three controllers (one novel) are introduced and
+compared on a single device concerning transparency and haptic
+rendering. 
+Overall the paper is understandable and entails sufficient
+mechanical/control details. However, comparisons to existing
+standardized evaluation procedures/metrics are missing leading to
+quality level, which needs to be improved.
+
+Main comments:
+Although the technical term transparency is moreover widely known in
+the research field, a sentence stating the definition of transparency
+is missing. (e.g. : Just et.al. Exoskeleton Transparency 2018)
+The type of experimental protocol and the outcome metrics for
+transparency evaluation are not discussed compared to literature in the
+paper. However, in the past there have been researchers successfully
+defining general experimental protocols as well as metrics for
+transparency evaluation of exoskeletons in literature (e.g.: Jarrasse
+et.al Methodology 2010). The reviewer suggests to compare your
+experimental results to well-known metrics in the literature to improve
+the quality/comparability of the paper/exo.
+The reviewer suggests to more intensively order/split for
+“transparency” and “haptics” the paragraphs study design and motivation
+for each measure before the results are presented in section V.
+In general, all figures should be self explaining. Variables should be
+named or explained in the caption of each figure. This makes it easier
+to understand the figure without having to switch between text and
+figure for explanation. The size & font of variables in figure and text
+should all match. In the moment each figure has a different scaling,
+the text size differs from too small to too big, and different fonts
+are used.
+The novelty of your paper should be clearly defined in abstract and
+conclusion. Is novelty in the study design, in the comparison of the
+three controllers? Then the study should be more in the focus. The
+overall novelty of the “novel controller JTFC1” needs to be more clear.
+Why are the other two controllers chosen? Are they representing gold
+standards in literature, could there be other possible disturbance
+observers who could reach similar performance as JTFC1? The discussion,
+why JTFC1 could be more effective than others is missing.
+
+Minor comments:
+In the introduction, the differentiation between groups (post-stroke
+neuro-rehabilitation device vs. human-robot interaction device) remains
+unclear. The reviewer thinks that the cited papers all include
+human-robot interaction and suggests to change the sentence. “In all of
+these physical human-robot interaction devices”. 
+Furthermore, to avoid misunderstanding, the reviewer suggests to add
+“physical” to “human-robot interaction” (abbreviation: pHRI instead of
+HRI)[Bajcsy, O’Malley, Learning robot objectives, CoRL 2017], which is
+the correct technical term, since there is the known research field
+“human-robot interaction” in social science.
+
+The joint definition with “J_1” etc. , the motor inertia as “J_mi”,
+“J_li” could be irritating since also the Jacobian is also “J”
+(Equation 37). The researcher suggests to use maybe the variable
+“\theta_i” for the joint, since afterwards the motor encoder
+measurement “\theta_mi” of each axis is also denoted as theta. 
+Why are the variables x and y marked as fat, but the vectors and
+matrices not (Equation 5). The reviewer suggested to stick to the
+international norm of vector (small letter & fat) and matrix (big
+letter & fat) notation for the whole paper. 
+Figure 3: The difference of Joint 3 and 5 compared to Joint 1,2,4
+should be named
+Figure 9:The legend is too small and not readable. 9b. Scale on the
+object and not readable
+Figure 10: Text to small and coordinate system not readable.
+Figure 12: No latex font used like in Figure 10 and text is again quite
+small.
+Figure 13: Could be adapted with smaller Dynamic Saturation & Kalman
+Filter block to achieve bigger fonts, otherwise doublecolumn figure
+would be suggested 
+Figure 16: Better arrangement of summation block would make it easier
+to understand which channel is plus and which is minus
+Figure 17: The legends are blocking the view on the data.
+Figure 18: Where is the reference circle? Could it be integrated to
+show the differences of the controllers?
+Figure 19: A confidence interval is shown, probably 95% CI? It is not
+explained. The reviewer refers to the main comment for figures.
+Fig 20 & 22: see Figure 19 
+Fig. 20: Color coding of paper probably forgotten 
+Fig. 21 Other colors should be taken as your three main colors. This
+should be only for JTFC. This improves the clarity and readability of
+the paper.
+The reviewer couldn’t find the ethic approval for research on humans
+for the presented experiments. Please add the according information
+about ethics approval. 
+Please state, why only one subject was needed to evaluate the
+transparency, since your exoskeleton’s transparency and the
+compensation quality probably differs for different arm length.
+Why was only one velocity chosen (and why this one), although it is
+expected that that the transparency of the three controllers differs
+for different speeds?
+Do you have the tracking error and velocity profile saved as an outcome
+measure and would it be an interesting outcome measure to understand
+the transparency performance and the result of the three controllers
+better?
+“The high transparency… p.13” comparing to existing transparency
+measures could lead to this interpretation.  
+Can you make any analysis on which controller is better(significance
+analysis), or are therefore more subjects needed?

@@ -1,0 +1,4 @@
+Add citation to this as well
+Exoskeletons as man-machine interface systems for teleoperation and interaction in virtual environments
+M Bergamasco, A Frisoli, CA Avizzano
+Advances in Telerobotics, 61-76

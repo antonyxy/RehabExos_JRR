@@ -1,0 +1,181 @@
+\section{Appendix I}
+
+Let us study the effect under static condition of the application of a motor torque compensating for the non-linearity due to gravity, estimated as 
+\DIFdelbegin \DIFdel{$\vects{\hat{G}}(\vectm{D} \vects{\hat{\theta}_m})$}\DIFdelend \DIFaddbegin \DIFadd{$\vect{\hat{G}}(\vectm{D} \vects{\hat{\uptheta}_m})$}\DIFaddend , with:
+
+\begin{equation}\DIFdelbegin \DIFdel{
+\vects{\tau_m}}\DIFdelend \DIFaddbegin \DIFadd{
+\vects{\uptau_m}}\DIFaddend =  \DIFdelbegin %DIFDELCMD < \vects{\hat{G}}%%%
+\DIFdelend \DIFaddbegin \vect{\hat{G}}\DIFaddend (\vectm{D} \DIFdelbegin %DIFDELCMD < \vects{\hat{\theta}_m}%%%
+\DIFdelend \DIFaddbegin \vects{\hat{\uptheta}_m}\DIFaddend )+\DIFdelbegin %DIFDELCMD < \vects{u}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vect{u}
+\DIFaddend \label{eq:inputForce}
+\end{equation}
+
+where  \DIFdelbegin \DIFdel{$\vects{u}$ }\DIFdelend \DIFaddbegin \DIFadd{$\vect{u}$ }\DIFaddend represents the actual control command.
+Under static conditions it can be found that:
+
+\begin{equation}\DIFdelbegin \DIFdel{
+\vects{u}}\DIFdelend \DIFaddbegin \DIFadd{
+\vect{u}}\DIFaddend =-  \vectm{J}^T \DIFdelbegin %DIFDELCMD < \vects{F_h} %%%
+\DIFdelend \DIFaddbegin \vect{F_h} \DIFaddend +\DIFdelbegin %DIFDELCMD < \vects{G}%%%
+\DIFdelend \DIFaddbegin \vect{G}\DIFaddend ( \DIFdelbegin %DIFDELCMD < \vects{\theta_j}%%%
+\DIFdelend \DIFaddbegin \vects{\uptheta}\DIFaddend ) - \DIFdelbegin %DIFDELCMD < \vects{\hat{G}}%%%
+\DIFdelend \DIFaddbegin \vect{\hat{G}}\DIFaddend (\vectm{D} \DIFdelbegin %DIFDELCMD < \vects{\hat{\theta}_m}%%%
+\DIFdelend \DIFaddbegin \vects{\hat{\uptheta}_m}\DIFaddend )  \DIFdelbegin \DIFdel{= }\DIFdelend \DIFaddbegin \DIFadd{\simeq }\DIFaddend - \vectm{J}^T \DIFdelbegin %DIFDELCMD < \vects{F_h}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vect{F_h}
+\DIFaddend \label{eq:inputInStaticCondition}
+\end{equation}
+since \DIFdelbegin \DIFdel{$\vects{\hat{G}}(\vectm{D} \vects{\hat{\theta}_m}) \simeq \vects{G}( \vects{\theta_j})$}\DIFdelend \DIFaddbegin \DIFadd{$\vect{\hat{G}}(\vectm{D} \vects{\hat{\uptheta}_m}) \simeq \vect{G}( \vects{\uptheta})$}\DIFaddend . Under dynamic conditions, the incomplete cancellation of the gravity component due to the elasticity of the joint transmission can be modeled by introducing a disturbance term \DIFdelbegin \DIFdel{$\delta \vects{g}=\vects{G}( \vects{\theta_j}) - \vects{\hat{G}}(\vectm{D} \vects{\hat{\theta}_m})$}\DIFdelend \DIFaddbegin \DIFadd{$\vects{\delta} \vect{g}=\vect{G}( \vects{\uptheta}) - \vect{\hat{G}}(\vectm{D} \vect{\hat{\uptheta}_m})$}\DIFaddend , that can be summed up 
+to \DIFdelbegin \DIFdel{$\vects{F_h}$ }\DIFdelend \DIFaddbegin \DIFadd{$\vect{F_h}$ }\DIFaddend as a disturbance noise supported by the operator.
+
+
+So a variable apparent dynamic force \DIFdelbegin \DIFdel{$\vects{F_{dyn}}$ }\DIFdelend \DIFaddbegin \DIFadd{$\vect{F_{dyn}}$ }\DIFaddend can be defined   such that
+\DIFdelbegin \DIFdel{$\vectm{J}^T \Delta \vects{ F_{dyn}}( \vects{\dot{\theta}_j}, \vects{\theta_j})  =- \Delta \vectm{M} ( \vects{\theta_j}) \vects{\ddot{\theta}_j} - \vectm{C}( \vects{\dot{\theta}_j}, \vects{\theta_j})  \vects{\dot{\theta}_j}  $
+}\DIFdelend \DIFaddbegin \DIFadd{$\vectm{J}^T \vects{\Delta} \vect{ F_{dyn}}( \vects{\dot{\uptheta}}, \vects{\uptheta})  =- \vects{\Delta} \vectm{M} ( \vects{\uptheta}) \vects{\ddot{\uptheta}} - \vectm{C}( \vects{\dot{\uptheta}}, \vects{\uptheta})  \vects{\dot{\uptheta}}  $
+}\DIFaddend The new variable \DIFdelbegin \DIFdel{$\Delta \vects{F_{dyn}}$}\DIFdelend \DIFaddbegin \DIFadd{$\Delta \vect{F_{dyn}}$}\DIFaddend ,  representing uncompensated and/or unmodeled dynamics, can be considered as a disturbance force and considered as a contribution term to the overall external load  force  \DIFdelbegin \DIFdel{$\vects{F_l}$ }\DIFdelend \DIFaddbegin \DIFadd{$\vect{F_l}$ }\DIFaddend expressed by:
+\begin{equation}\DIFdelbegin \DIFdel{
+\vects{F_l}}\DIFdelend \DIFaddbegin \DIFadd{
+\vect{F_l}}\DIFaddend = \DIFdelbegin %DIFDELCMD < \vects{F_h} %%%
+\DIFdelend \DIFaddbegin \underbrace{\vects{F_h}}\DIFadd{_{\text{exogenous}} }\DIFaddend +  \DIFdelbegin \DIFdel{\delta }%DIFDELCMD < \vects{g}  %%%
+\DIFdel{+ \Delta }%DIFDELCMD < \vects{F_{dyn}}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \underbrace{\vects{\delta}\vect{g}  +  \vects{\Delta} \vect{F_{dyn}}}\DIFadd{_{\text{endogenous}}
+}\DIFaddend \label{eq:extraForces}
+\end{equation}
+
+
+
+This in general states that the external forces are the sum of exogenous $\vects{F_h} $ and endogenous inputs  $ \delta \vects{g} + \Delta \vects{F_{dyn}}$ . While exogenous inputs are unknown a priori and depending on human operator behavior, endogenous inputs can be estimated and compensated to some extent.
+
+So introducing the variable substitution expressed by \eqref{eq:taus}, dynamic equations can be reformulated as follow:
+
+\setlength{\arraycolsep}{0.0em}
+\begin{eqnarray}
+\label{eq:eq1}
+\DIFdelbegin %DIFDELCMD < \vectm{J_m  D} \vects{\ddot{\theta}_m} %%%
+\DIFdelend \DIFaddbegin \vectm{I_m  D} \vects{\ddot{\uptheta}_m} \DIFaddend + \vectm{B_m  D}  \DIFdelbegin %DIFDELCMD < \vects{\dot{\theta}_m} %%%
+\DIFdelend \DIFaddbegin \vects{\dot{\uptheta}_m} \DIFadd{+}\DIFaddend = \DIFaddbegin \vectm{C_t} \DIFaddend \vectm{K_t}^{-1} \DIFdelbegin %DIFDELCMD < \vectm{C_t} \vects{\dot{\tau}_s} %%%
+\DIFdelend \DIFaddbegin \vects{\dot{\uptau}_s} \DIFaddend + \DIFdelbegin %DIFDELCMD < \vects{\tau_s} %%%
+\DIFdelend \DIFaddbegin \vects{\uptau_s} \DIFaddend + \DIFdelbegin %DIFDELCMD < \vects{u} %%%
+\DIFdelend \DIFaddbegin \vect{u} \DIFaddend + \DIFdelbegin %DIFDELCMD < \vects{\tau_d}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vects{\uptau_d} \label{eq_first_formulation_ddthetam}
+\DIFaddend \end{eqnarray}
+\begin{eqnarray}
+\label{eq:eq2}
+\DIFdelbegin %DIFDELCMD < \overline{\vectm{M}} \vects{\ddot{\theta}_j}  %%%
+\DIFdelend \DIFaddbegin {\vectm{\overline{M}}} \vects{\ddot{\uptheta}}  \DIFaddend +  \DIFaddbegin \vectm{C_t} \DIFaddend \vectm{K_t}^{-1} \DIFdelbegin %DIFDELCMD < \vectm{C_t}  \vects{\dot{\tau}_s} %%%
+\DIFdelend \DIFaddbegin \vects{\dot{\uptau}_s} \DIFaddend + \DIFdelbegin %DIFDELCMD < \vects{\tau_s} %%%
+\DIFdelend \DIFaddbegin \vects{\uptau_s} \DIFaddend = \vectm{J}^T  \DIFdelbegin %DIFDELCMD < \vects{F_{l}}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vect{F_{l}}
+\DIFaddend \end{eqnarray}
+\setlength{\arraycolsep}{5pt}
+
+But we know that
+
+\begin{equation}
+\label{eq:thetadotand2dot}
+\begin{aligned}
+\vectm{K_t}^{-1}\DIFdelbegin %DIFDELCMD < \vects{\ddot{\tau}_s} %%%
+\DIFdelend \DIFaddbegin \vects{\ddot{\uptau}_s} \DIFaddend + \vectm{D} \DIFdelbegin %DIFDELCMD < \vects{\ddot{\theta}_m}  %%%
+\DIFdelend \DIFaddbegin \vects{\ddot{\uptheta}_m}  \DIFaddend & =   \DIFdelbegin %DIFDELCMD < \vects{\ddot{\theta}_j}  %%%
+\DIFdelend \DIFaddbegin \vects{\ddot{\uptheta}}  \DIFaddend \\
+\DIFdelbegin %DIFDELCMD < \vectm{K_t}%%%
+\DIFdel{^{-1}}%DIFDELCMD < \vects{\dot{\tau}_s} %%%
+\DIFdel{+ }%DIFDELCMD < \vectm{D} \vects{\dot{\theta}_m}   & %%%
+\DIFdel{=    }%DIFDELCMD < \vects{\dot{\theta}_j}  
+%DIFDELCMD < %%%
+\DIFdelend %DIF > \vectm{K_t}^{-1}\vects{\dot{\uptau}_s} + \vectm{D} \vects{\dot{\uptheta}_m}   & =    \vects{\dot{\uptheta}}  
+\end{aligned}
+\end{equation}
+
+Then making substitution of (\ref{eq:thetadotand2dot}) in  (\ref{eq:eq2}) to eliminate \DIFdelbegin \DIFdel{$ \vects{\theta_j}$ and its higher order derivatives}\DIFdelend \DIFaddbegin \DIFadd{$ \vects{\ddot{\uptheta}}$}\DIFaddend , we obtain:
+
+\begin{equation}\DIFdelbegin \DIFdel{
+\overline{\vectm{M}  D}}%DIFDELCMD < \vects{\ddot{\theta}_m } %%%
+\DIFdelend \DIFaddbegin \DIFadd{
+\overline{\vectm{M}} }\vectm{ D}\vects{\ddot{\uptheta}_m } \DIFaddend + \DIFdelbegin %DIFDELCMD < \overline{\vectm{M} K_t}%%%
+\DIFdelend \DIFaddbegin \overline{\vectm{M}}\vectm{ K_t}\DIFaddend ^{-1} \DIFdelbegin %DIFDELCMD < \vects{\ddot{\tau}_s} %%%
+\DIFdelend \DIFaddbegin \vects{\ddot{\uptau}_s} \DIFaddend + \DIFaddbegin \vectm{C_t} \DIFaddend \vectm{K_t}^{-1} \DIFdelbegin %DIFDELCMD < \vectm{C_t}\vects{\dot{\tau}_s}  %%%
+\DIFdelend \DIFaddbegin \vects{\dot{\uptau}_s}  \DIFaddend + \DIFdelbegin %DIFDELCMD < \vects{\tau_s}  %%%
+\DIFdelend \DIFaddbegin \vects{\uptau_s}  \DIFaddend =  \vectm{J}^T \vects{F_l}
+\end{equation}
+
+and then replacing \DIFdelbegin \DIFdel{$\vectm{D}\vects{\ddot{\theta}_m}=\vectm{J_m}^{-1} \{ -\vectm{B_m  D}  \vects{\dot{\theta}_m} + \vectm{K_t}^{-1} \vectm{C_t} \vects{\dot{\tau}_s} + \vects{\tau_s} +\vects{u}  +\vects{\tau_d} \} $
+and defining  $\vectm{J_i}^{-1}= \overline{\vectm{M}}^{-1}[\vectm{I} + \overline{\vectm{M} J_m}^{-1}]$}\DIFdelend \DIFaddbegin \DIFadd{from }\eqref{eq_first_formulation_ddthetam} \DIFadd{$\vectm{D}\vects{\ddot{\uptheta}_m}=\vectm{I_m}^{-1} \{ -\vectm{B_m  D}  \vects{\dot{\uptheta}_m} +  \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s} + \vects{\uptau_s} +\vects{u}  +\vects{\uptau_d} \} $
+and defining  $\vectm{I_i}^{-1}= \overline{\vectm{M}}^{-1}+\vectm{I_m}^{-1}$}\DIFaddend ,  dynamics equations can be put in the following form:
+
+
+
+
+
+\setlength{\arraycolsep}{0.0em}
+\DIFdelbegin \begin{displaymath}\DIFdel{
+\vectm{ J_m  D } \vects{ \ddot{\theta}_m} + \vectm{B_m D}\vects{\dot{\theta}_m} = \vectm{K_t}^{-1} \vectm{C_t}\vects{ \dot{\tau}_s} + \vects{\tau_s} + \vects{u} + \vects{\tau_d}
+\label{eq:dynamics_eq1}
+}\end{displaymath}
+%DIFAUXCMD
+\DIFdelend %DIF > \begin{equation}
+%DIF > \vectm{ I_m  D } \vects{ \ddot{\uptheta}_m} + \vectm{B_m D}\vects{\dot{\uptheta}_m} = \vectm{K_t}^{-1} \vectm{C_t}\vects{ \dot{\uptau}_s} + \vects{\uptau_s} + \vect{u} + \vects{\uptau_d}
+%DIF > \label{eq:dynamics_eq1}
+%DIF > \end{equation}
+\begin{eqnarray}
+\label{eq:dynamics_eq2}
+\DIFdelbegin %DIFDELCMD < \vects{\ddot{\tau}_s} %%%
+\DIFdelend \DIFaddbegin \vects{\ddot{\uptau}_s} \DIFaddend && + \DIFdelbegin %DIFDELCMD < \vectm{C_t J_i}%%%
+\DIFdelend \DIFaddbegin \vectm{C_t I_i}\DIFaddend ^{-1} \DIFdelbegin %DIFDELCMD < \vects{\dot{\tau}_s} %%%
+\DIFdelend \DIFaddbegin \vects{\dot{\uptau}_s} \DIFaddend + \DIFdelbegin %DIFDELCMD < \vectm{K_t J_i}%%%
+\DIFdelend \DIFaddbegin \vectm{K_t I_i}\DIFaddend ^{-1} \DIFdelbegin %DIFDELCMD < \vects{\tau_s} %%%
+\DIFdelend \DIFaddbegin \vects{\uptau_s} \DIFaddend =\DIFdelbegin %DIFDELCMD < \vectm{K_t   J_m}%%%
+\DIFdelend \DIFaddbegin \vectm{K_t } \overline{\vectm{M}}\DIFaddend ^{-1} \DIFdelbegin %DIFDELCMD < \vectm{B_m D}\vects{\dot{\theta}_m} %%%
+\DIFdelend \DIFaddbegin \vectm{ J}\DIFadd{^T }\vect{F_l}  \DIFaddend \nonumber \\
+&&{+}\:   \DIFdelbegin %DIFDELCMD < \overline{\vectm{M}}%%%
+\DIFdelend \DIFaddbegin \vectm{K_t   I_m}\DIFaddend ^{-1} \DIFdelbegin %DIFDELCMD < \vectm{K_t J}%%%
+\DIFdel{^T }%DIFDELCMD < \vects{F_l} %%%
+\DIFdelend \DIFaddbegin \DIFadd{( }\vectm{B_m D}\vects{\dot{\uptheta}_m}  \DIFaddend -  \DIFdelbegin %DIFDELCMD < \vectm{K_t J_{m}}%%%
+\DIFdel{^{-1} }%DIFDELCMD < \vects{\tau_d} %%%
+\DIFdelend \DIFaddbegin \vects{\uptau_d} \DIFaddend - \DIFdelbegin %DIFDELCMD < \vectm{K_t J_m}%%%
+\DIFdel{^{-1} }%DIFDELCMD < \vects{u}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \vect{u}\DIFadd{)
+}\DIFaddend \end{eqnarray}
+\setlength{\arraycolsep}{5pt}
+
+
+%DIF > 
+%DIF > *****************************
+%DIF > CALCOLI DI VERIFICA
+%DIF > 
+%DIF > \begin{eqnarray}
+%DIF > (\vectm{I_m}^{-1} \{ -\vectm{B_m  D}  \vects{\dot{\uptheta}_m} +  \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s} + \vects{\uptau_s} + \vects{u}  +  \vects{\uptau_d} \}) +\\ +  \vectm{ K_t}^{-1} \vects{\ddot{\uptau}_s} + \overline{\vectm{M}}^{-1} \vectm{C_t} \vectm{K_t}^{-1} \vects{\dot{\uptau}_s}  +   \overline{\vectm{M}}^{-1} \vects{\uptau_s}  = \overline{\vectm{M}}^{-1} \vectm{J}^T \vects{F_l}
+%DIF > \end{eqnarray}
+%DIF > 
+%DIF > some matrices are diagonal so we can reduce
+%DIF > 
+%DIF > \begin{multline}
+%DIF >   - \vectm{I_m}^{-1}\vectm{B_m  D}  \vects{\dot{\uptheta}_m} + \vectm{I_m}^{-1} \vectm{C_t} \vects{\dot{\uptau}_s} \\+\vectm{I_m}^{-1} \vects{\uptau_s} +\vectm{I_m}^{-1}  \vects{u} \\ + \vectm{I_m}^{-1} \vects{\uptau_d}   +  \vectm{ K_t}^{-1} \vects{\ddot{\uptau}_s} + \overline{\vectm{M}}^{-1} \vectm{C_t} \vects{\dot{\uptau}_s}  +\\   \overline{\vectm{M}}^{-1} \vects{\uptau_s}  = \overline{\vectm{M}}^{-1} \vectm{J}^T \vects{F_l}
+%DIF > \end{multline}
+%DIF > 
+%DIF > 
+%DIF > \begin{multline}
+%DIF >  +  \vects{\ddot{\uptau}_s}+ \vectm{K_t}\vectm{I_m}^{-1} \vectm{C_t} \vects{\dot{\uptau}_s} +\vectm{K_t} \vectm{I_m}^{-1} \vects{\uptau_s} + \vectm{K_t}\vectm{I_m}^{-1}  \vects{u} \\ + \vectm{K_t} \vectm{I_m}^{-1} \vects{\uptau_d}    + \overline{\vectm{M}}^{-1} \vectm{C_t}  \vects{\dot{\uptau}_s}  +   \vectm{K_t} \overline{\vectm{M}}^{-1} \vects{\uptau_s}  = \\ \vectm{K_t} \vectm{I_m}^{-1}\vectm{B_m  D}  \vects{\dot{\uptheta}_m}+ \vectm{K_t} \overline{\vectm{M}}^{-1} \vectm{J}^T \vects{F_l}
+%DIF > \end{multline}
+%DIF > 
+%DIF > 
+%DIF > some matrices are diagonal so we can reduce
+%DIF > 
+%DIF > \begin{multline}
+%DIF > +  \vects{\ddot{\uptau}_s}+   \overline{\vectm{M}}^{-1} \vectm{C_t}  \vects{\dot{\uptau}_s} + \vectm{I_m}^{-1} \vectm{C_t}   \vects{\dot{\uptau}_s} +\vectm{K_t} \vectm{I_m}^{-1} \vects{\uptau_s}  \\   +   \vectm{K_t} \overline{\vectm{M}}^{-1} \vects{\uptau_s}  = \\ \vectm{K_t} \overline{\vectm{M}}^{-1} \vectm{J}^T \vects{F_l} + \\+\vectm{K_t} \vectm{I_m}^{-1} (\vectm{B_m  D}  \vects{\dot{\uptheta}_m}-  \vect{u})-  \vectm{K_t} \vectm{I_m}^{-1} \vects{\uptau_d} 
+%DIF > \end{multline}
+%DIF > 
+%DIF > *************************************
+\DIFaddbegin 
+
+\DIFaddend This form of the dynamics equation is useful for defining a full-state feedback control law and an optimal observer for the estimation of joint torque. \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD <  %%%
+\DIFdelend

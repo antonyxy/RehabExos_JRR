@@ -1,0 +1,138 @@
+%% Creator: Inkscape inkscape 0.92.3, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'acceleration_estimation_schema.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{3460.90922702bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.21561821)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0.16015238,0.17612713){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0.02731883,0.20981117){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$k_c \frac{V_{max}}{R}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{acceleration_estimation_schema.pdf}}%
+    \put(0.05600179,0.16879824){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$k_c \frac{k_{v}}{R}$\end{tabular}}}}%
+    \put(-0.00002715,0.18144845){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\dot{\theta}_{m,i}$\end{tabular}}}}%
+    \put(0.00002747,0.14451977){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tau_{m,i}$\end{tabular}}}}%
+    \put(0.1471682,0.17275405){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{-}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{acceleration_estimation_schema.pdf}}%
+    \put(0.16825861,0.11175548){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{-}\end{tabular}}}}%
+    \put(0.18105684,0.11671359){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{-}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{acceleration_estimation_schema.pdf}}%
+    \put(0.19901084,0.18638239){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tau_{MAX}$\end{tabular}}}}%
+    \put(0.19384776,0.08809293){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$-\tau_{MAX}$\end{tabular}}}}%
+    \put(0.213758,0.1478906){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0\end{tabular}}}}%
+    \put(0.21397008,0.12425528){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{acceleration_estimation_schema.pdf}}%
+    \put(0.29065228,0.16636544){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}High\end{tabular}}}}%
+    \put(0.29112767,0.10179698){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Low\end{tabular}}}}%
+    \put(0.27593466,0.19295858){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Dynamic Saturation\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{acceleration_estimation_schema.pdf}}%
+    \put(0.04143166,0.06614519){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_{m,i}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{acceleration_estimation_schema.pdf}}%
+    \put(0.0001479,0.07843534){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{\dot{\theta}}_{m,i}$\end{tabular}}}}%
+    \put(0.00024083,0.03869046){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tau_{s,i}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{acceleration_estimation_schema.pdf}}%
+    \put(0.38690525,0.14782634){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tau_{m,i}^{SAT}$\end{tabular}}}}%
+    \put(0.40714974,0.07774512){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0.39259948,0.07341098){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{-}\end{tabular}}}}%
+    \put(0.39557962,0.05971927){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{-}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{acceleration_estimation_schema.pdf}}%
+    \put(0.43406541,0.08617149){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\tau_{A}$\end{tabular}}}}%
+    \put(0.42660139,0.04873161){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$-\tau_{A}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{acceleration_estimation_schema.pdf}}%
+    \put(0.48623904,0.06618546){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{1}{J_m}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{acceleration_estimation_schema.pdf}}%
+    \put(0.49764665,0.10266972){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\ddot{\theta}_{m,i}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{acceleration_estimation_schema.pdf}}%
+    \put(0.49105908,0.19960353){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\theta_{m,i}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{acceleration_estimation_schema.pdf}}%
+    \put(0.90731161,0.06661898){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{\theta}_{m,i}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{acceleration_estimation_schema.pdf}}%
+    \put(0.90769958,0.03586917){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{\ddot{\theta}}_{m,i}$\end{tabular}}}}%
+    \put(0.56699543,0.15103756){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Observer\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{acceleration_estimation_schema.pdf}}%
+    \put(0.62159832,0.08220691){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L_3^{\theta}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{acceleration_estimation_schema.pdf}}%
+    \put(0.64753164,0.08220688){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L_3^{\ddot{\theta}}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{acceleration_estimation_schema.pdf}}%
+    \put(0.68353669,0.05390599){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{1}{s}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{acceleration_estimation_schema.pdf}}%
+    \put(0.64409086,0.06070664){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0.66111322,0.06433321){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0.56715567,0.13708452){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0.59362476,0.11448518){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{acceleration_estimation_schema.pdf}}%
+    \put(0.70765037,0.08218929){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L_2^{\theta}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{acceleration_estimation_schema.pdf}}%
+    \put(0.7344505,0.08218926){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L_2^{\ddot{\theta}}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{acceleration_estimation_schema.pdf}}%
+    \put(0.77002218,0.05388836){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{1}{s}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{acceleration_estimation_schema.pdf}}%
+    \put(0.7336499,0.06663515){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0.74738418,0.06343995){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{acceleration_estimation_schema.pdf}}%
+    \put(0.79381987,0.08195925){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L_1^{\theta}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{acceleration_estimation_schema.pdf}}%
+    \put(0.81975316,0.08195923){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$L_1^{\ddot{\theta}}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{acceleration_estimation_schema.pdf}}%
+    \put(0.85575827,0.05365833){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{1}{s}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{acceleration_estimation_schema.pdf}}%
+    \put(0.8339915,0.06386664){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{acceleration_estimation_schema.pdf}}%
+    \put(0.73083743,0.04623172){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{acceleration_estimation_schema.pdf}}%
+    \put(0.81875715,0.06697024){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{acceleration_estimation_schema.pdf}}%
+    \put(0.818786,0.04657121){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{+}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{acceleration_estimation_schema.pdf}}%
+    \put(0.59510211,0.10007871){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{-}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{acceleration_estimation_schema.pdf}}%
+    \put(0.56802593,0.12269897){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{-}\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

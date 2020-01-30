@@ -1,0 +1,83 @@
+
+\section{Appendix I}
+
+
+
+
+Let us study the effect under static condition of the application of a motor torque compensating for the non-linearity due to gravity, estimated as 
+$\vects{\hat{G}}(\vectm{D} \vects{\hat{\theta}_m})$, with:
+
+\begin{equation}
+\vects{\tau_m}=  \vects{\hat{G}}(\vectm{D} \vects{\hat{\theta}_m})+\vects{u}
+\label{eq:inputForce}
+\end{equation}
+
+where  $\vects{u}$ represents the actual control command.
+Under static conditions it can be found that:
+
+\begin{equation}
+\vects{u}=-  \vectm{J}^T \vects{F_h} +\vects{G}( \vects{\theta_j}) - \vects{\hat{G}}(\vectm{D} \vects{\hat{\theta}_m})= - \vectm{J}^T \vects{F_h}
+\label{eq:inputInStaticCondition}
+\end{equation}
+since $\vects{\hat{G}}(\vectm{D} \vects{\hat{\theta}_m}) \simeq \vects{G}( \vects{\theta_j})$. Under dynamic conditions, the incomplete cancellation of the gravity component due to the elasticity of the joint transmission can be modeled by introducing a disturbance term $\delta \vects{g}=\vects{G}( \vects{\theta_j}) - \vects{\hat{G}}(\vectm{D} \vects{\hat{\theta}_m})$, that can be summed up 
+to $\vects{F_h}$ as a disturbance noise supported by the operator.
+
+
+So a variable apparent dynamic force $\vects{F_{dyn}}$ can be defined   such that
+$\vectm{J}^T \Delta \vects{ F_{dyn}}( \vects{\dot{\theta}_j}, \vects{\theta_j})  =- \Delta \vectm{M} ( \vects{\theta_j}) \vects{\ddot{\theta}_j} - \vectm{C}( \vects{\dot{\theta}_j}, \vects{\theta_j})  \vects{\dot{\theta}_j}  $
+The new variable $\Delta \vects{F_{dyn}}$,  representing uncompensated and/or unmodeled dynamics, can be considered as a disturbance force and considered as a contribution term to the overall external load  force  $\vects{F_l}$ expressed by:
+\begin{equation}
+\vects{F_l}= \vects{F_h} + \delta \vects{g}  + \Delta \vects{F_{dyn}}
+\label{eq:extraForces}
+\end{equation}
+
+
+
+This in general states that the external forces are the sum of exogenous $\vects{F_h} $ and endogenous inputs  $ \delta \vects{g} + \Delta \vects{F_{dyn}}$ . While exogenous inputs are unknown a priori and depending on human operator behavior, endogenous inputs can be estimated and compensated to some extent.
+
+So introducing the variable substitution expressed by \eqref{eq:taus}, dynamic equations can be reformulated as follow:
+
+\setlength{\arraycolsep}{0.0em}
+\begin{eqnarray}
+\label{eq:eq1}
+\vectm{J_m  D} \vects{\ddot{\theta}_m} + \vectm{B_m  D}  \vects{\dot{\theta}_m} = \vectm{K_t}^{-1} \vectm{C_t} \vects{\dot{\tau}_s} + \vects{\tau_s} + \vects{u} + \vects{\tau_d}
+\end{eqnarray}
+\begin{eqnarray}
+\label{eq:eq2}
+\overline{\vectm{M}} \vects{\ddot{\theta}_j}  + \vectm{K_t}^{-1} \vectm{C_t}  \vects{\dot{\tau}_s} + \vects{\tau_s} = \vectm{J}^T  \vects{F_{l}}
+\end{eqnarray}
+\setlength{\arraycolsep}{5pt}
+
+But we know that
+
+\begin{equation}
+\label{eq:thetadotand2dot}
+\begin{aligned}
+\vectm{K_t}^{-1}\vects{\ddot{\tau}_s} + \vectm{D} \vects{\ddot{\theta}_m}  & =   \vects{\ddot{\theta}_j}  \\
+\vectm{K_t}^{-1}\vects{\dot{\tau}_s} + \vectm{D} \vects{\dot{\theta}_m}   & =    \vects{\dot{\theta}_j}  
+\end{aligned}
+\end{equation}
+
+Then making substitution of (\ref{eq:thetadotand2dot}) in  (\ref{eq:eq2}) to eliminate $ \vects{\theta_j}$ and its higher order derivatives, we obtain:
+
+\begin{equation}
+\overline{\vectm{M}  D}\vects{\ddot{\theta}_m } + \overline{\vectm{M} K_t}^{-1} \vects{\ddot{\tau}_s} + \vectm{K_t}^{-1} \vectm{C_t}\vects{\dot{\tau}_s}  + \vects{\tau_s}  =  \vectm{J}^T \vects{F_l}
+\end{equation}
+
+and then replacing $\vectm{D}\vects{\ddot{\theta}_m}=\vectm{J_m}^{-1} \{ -\vectm{B_m  D}  \vects{\dot{\theta}_m} + \vectm{K_t}^{-1} \vectm{C_t} \vects{\dot{\tau}_s} + \vects{\tau_s} +\vects{u}  +\vects{\tau_d} \} $
+and defining  $\vectm{J_i}^{-1}= \overline{\vectm{M}}^{-1}[\vectm{I} + \overline{\vectm{M} J_m}^{-1}]$,  dynamics equations can be put in the following form:
+
+\setlength{\arraycolsep}{0.0em}
+\begin{equation}
+\vectm{ J_m  D } \vects{ \ddot{\theta}_m} + \vectm{B_m D}\vects{\dot{\theta}_m} = \vectm{K_t}^{-1} \vectm{C_t}\vects{ \dot{\tau}_s} + \vects{\tau_s} + \vects{u} + \vects{\tau_d}
+\label{eq:dynamics_eq1}
+\end{equation}
+\begin{eqnarray}
+\label{eq:dynamics_eq2}
+\vects{\ddot{\tau}_s} && + \vectm{C_t J_i}^{-1} \vects{\dot{\tau}_s} + \vectm{K_t J_i}^{-1} \vects{\tau_s} = \vectm{K_t   J_m}^{-1}  \vectm{B_m D}\vects{\dot{\theta}_m} \nonumber \\
+&&{+}\:\overline{\vectm{M}}^{-1} \vectm{K_t J}^T \vects{F_l} - \vectm{K_t J_{m}}^{-1} \vects{\tau_d} - \vectm{K_t J_m}^{-1} \vects{u}
+\end{eqnarray}
+\setlength{\arraycolsep}{5pt}
+
+This form of the dynamics equation is useful for defining a full-state feedback control law and an optimal observer for the estimation of joint torque.
+

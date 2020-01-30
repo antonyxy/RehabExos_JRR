@@ -1,0 +1,138 @@
+% LaTeX rebuttal letter example. 
+% 
+% Copyright 2019 Friedemann Zenke, fzenke.net
+%
+% Based on examples by Dirk Eddelbuettel, Fran and others from 
+% https://tex.stackexchange.com/questions/2317/latex-style-or-macro-for-detailed-response-to-referee-report
+% 
+% Licensed under cc by-sa 3.0 with attribution required.
+% See https://creativecommons.org/licenses/by-sa/3.0/
+% and https://stackoverflow.blog/2009/06/25/attribution-required/
+
+\documentclass[11pt]{article}
+
+
+\usepackage[utf8]{inputenc}
+%\usepackage{lipsum} % to generate some filler text
+\usepackage{fullpage}
+
+\usepackage{color}
+\usepackage{todonotes}
+
+% import Eq and Section references from the main manuscript where needed
+% \usepackage{xr}
+% \externaldocument{manuscript}
+
+
+
+
+
+
+%%%%%%%%%%%%%%ANSWERS TO REVIEWRS
+
+
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hldone}[1]{\colorbox{green}{#1}}
+\newcommand{\hldoing}[1]{\colorbox{cyan}{#1}}
+
+
+% package needed for optional arguments
+\usepackage{xifthen}
+% define counters for reviewers and their points
+\newcounter{reviewer}
+\setcounter{reviewer}{0}
+\newcounter{point}[reviewer]
+\setcounter{point}{0}
+
+
+\newcounter{editorpoint}
+\setcounter{editorpoint}{0}
+%\newcounter{editorpoint}[editor]
+%\setcounter{editorpoint}{0}
+
+
+% This refines the format of how the reviewer/point reference will appear.
+\renewcommand{\thepoint}{P\,\thereviewer.\arabic{point}} 
+
+
+%\renewcommand{\theeditorpoint}{P\,\theeditorpoint.\arabic{point}}
+
+% command declarations for reviewer points and our responses
+\newcommand{\reviewersection}{\stepcounter{reviewer} \bigskip \hrule
+	\section*{Reviewer \thereviewer}}
+
+\newcommand{\editorsection}[1]{\stepcounter{editor} \bigskip \hrule
+	\section*{Editor  }}
+
+\newenvironment{point}
+{\refstepcounter{point} \bigskip \noindent {\textbf{Reviewer~Point~\thepoint} } ---\ }
+{\par }
+
+
+\newenvironment{editorpoint}
+{\refstepcounter{editorpoint} \bigskip \noindent {\textbf{Editor~Point~\theeditorpoint} } ---\ }
+{\par }
+
+\newcommand{\shortpoint}[1]{\refstepcounter{point}  \bigskip \noindent 
+	{\textbf{Reviewer~Point~\thepoint} } ---~#1\par }
+
+
+
+
+\newenvironment{reply}
+{\medskip \noindent \begin{sf}\textbf{Reply}:\  }
+	{\medskip \end{sf}}
+
+\newcommand{\shortreply}[2][]{\medskip \noindent \begin{sf}\textbf{Reply}:\  #2
+		\ifthenelse{\equal{#1}{}}{}{ \hfill \footnotesize (#1)}%
+		\medskip \end{sf}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+
+
+\section*{Response to editor}
+% General intro text goes here
+
+We thank the editor for the instructive and precise feedback, please find enclosed a detailed answer to the received comments.
+
+
+	\input{./editor_reply.tex}
+
+
+\section*{Response to the reviewers}
+
+We thank the reviewers for their critical assessment of our work. 
+In the following we address their concerns point by point. 
+
+% Let's start point-by-point with Reviewer 1
+\setcounter{reviewer}{1}
+\reviewersection
+
+	\input{./reviewer2_reply.tex}
+
+
+
+% Begin a new reviewer section
+\setcounter{reviewer}{2}
+\reviewersection
+
+\input{./reviewer3_reply.tex}
+
+\setcounter{reviewer}{4}
+\reviewersection
+
+\input{./reviewer5_reply.tex}
+
+\bibliographystyle{apalike}
+%\bibliography{references}
+\bibliography{../referencesTRO}
+%referencesTRO
+
+\end{document}
+
+

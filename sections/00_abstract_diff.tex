@@ -1,0 +1,24 @@
+%DIF <  As a general rule, do not put math, special symbols or citations
+%DIF <  in the abstract or keywords.
+%DIF <  in the abstract or keywords.
+\begin{abstract}
+\DIFdelbegin \DIFdel{In the last two decades, the research on exoskeletons has been increasing for several applications. The mechanical architecture of the exoskeleton directly influences its performances in term of torque and position control. An other aspect is the complexity of the joint design and the number of the required actuators and sensors per joint. In this work  we present an }\DIFdelend %DIF > In the last two decades, the research on exoskeletons has been increasing. The mechanical architecture of the exoskeleton directly influences its performances in term of torque and position control. 
+%DIF > Another aspect is the complexity of the joint design and the number of the required actuators and sensors per joint.
+ \DIFaddbegin \DIFadd{This work  presents a new }\DIFaddend upper-limb exoskeleton \DIFdelbegin \DIFdel{designed }\DIFdelend \DIFaddbegin \DIFadd{design endowed }\DIFaddend with compact elastic joints with torque sensors based on strain gauges. The torque sensor \DIFdelbegin \DIFdel{performances }\DIFdelend \DIFaddbegin \DIFadd{performance }\DIFaddend and the design aspects that affect \DIFdelbegin \DIFdel{the }\DIFdelend unwanted non-axial moment load crosstalk are addressed in this study. The joints have a high reduction ratio and \DIFdelbegin \DIFdel{they }\DIFdelend \DIFaddbegin \DIFadd{can }\DIFaddend display an output torque of 150 Nm, nevertheless, they are transparent by control \DIFdelbegin \DIFdel{and show }\DIFdelend \DIFaddbegin \DIFadd{exhibiting  }\DIFaddend a low error in both haptic force rendering and position control. 
+ \DIFdelbegin \DIFdel{Good transparency  and force rendering are obtained by model-based }\DIFdelend \DIFaddbegin 
+
+%DIF >  Good transparency and force rendering are obtained by model-based full-state feedback control. The control schema takes into account part of the torque sensor non-linearities. Performances have been evaluated using different controls showing that this solution is a valid trade-off among exoskeleton complexity, maximum torque, transparency and haptic capabilities.
+%DIF > %
+%DIF > 
+\DIFadd{To improve transparency  a new state-feedback interaction torque control that takes into account the multi-dof non linear system dynamics and provides a compensation of non-linear effects such as friction and gravity components is proposed, in order to achieve an accurate estimation of human interaction force.
+%DIF >  This is accomplished by a single joint optimum observer that ensures joint torque tracking, while a centralized control estimates and compensates for the dynamics of the whole system. 
+ %DIF > Moreover, we have evaluated the effect of dynamic compensation on system transparency highlighting good results.
+ To validate the proposed control as well as the chosen mechanical architecture, the }\DIFaddend full-state feedback control \DIFdelbegin \DIFdel{. The control schema takes into account part of  the torque sensor non-linearities. 
+ Performances have been evaluated using different controls showing that this solution is a valid trade-off among exoskeleton complexity,  maximum torque , }\DIFdelend \DIFaddbegin \DIFadd{was  compared with two  other benchmark state-feedback controllers,  in two tasks of  the zero desired force tracking (}{\em \DIFaddend transparency\DIFaddbegin }\DIFadd{) and  contact with a virtual stiff wall (}{\em \DIFadd{haptic rendering}}\DIFadd{). 
+ The }{\em \DIFadd{transparency}} \DIFadd{benchmarking test was performed experimentally with 10 subjects at two different reference velocities.
+In both experimental conditions,  the proposed joint torque control allows achieving  higher performance both in term of transparency }\DIFaddend and haptic \DIFdelbegin \DIFdel{capabilities.
+ }\DIFdelend \DIFaddbegin \DIFadd{rendering, demonstrating how an active impedance by control  can reach optimal performance if suitable state feedback is employed.
+ }
+
+ 
+\DIFaddend \end{abstract}

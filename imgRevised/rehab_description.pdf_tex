@@ -1,0 +1,106 @@
+%% Creator: Inkscape inkscape 0.92.3, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'rehab_description.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1869.74102445bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.563608)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{rehab_description.pdf}}%
+    \put(0.10908984,0.18174211){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}LINK 1\end{tabular}}}}%
+    \put(0.1677445,0.20037967){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}JOINT 2\end{tabular}}}}%
+    \put(0.24086193,0.16270642){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}LINK\\2\end{tabular}}}}%
+    \put(0.24462352,0.07740995){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}JOINT 3\end{tabular}}}}%
+    \put(0.28879131,0.16280672){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}LINK\\3\end{tabular}}}}%
+    \put(0.31736543,0.19978168){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}JOINT 4\end{tabular}}}}%
+    \put(0.38186974,0.17809237){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}LINK 4\end{tabular}}}}%
+    \put(0.39619624,0.07740995){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}JOINT 5\end{tabular}}}}%
+    \put(0.44141562,0.14417998){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}LINK 5\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{rehab_description.pdf}}%
+    \put(0.67298366,0.54505348){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Output shaft\\bearings\end{tabular}}}}%
+    \put(0.66184695,0.46914805){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Sprocket\\hub\end{tabular}}}}%
+    \put(0.66305009,0.40006313){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Encoder\end{tabular}}}}%
+    \put(0.90410435,0.52988861){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Motor stator\end{tabular}}}}%
+    \put(0.9157652,0.49522574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Motor rotor\end{tabular}}}}%
+    \put(0.95226233,0.39036871){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Motor rotor\\bearings\end{tabular}}}}%
+    \put(0.87540945,0.33633954){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Harmonic drive\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{rehab_description.pdf}}%
+    \put(0.93100976,0.45552209){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Encoder\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{rehab_description.pdf}}%
+    \put(0.0113565,0.48357319){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Joint 1\end{tabular}}}}%
+    \put(0.19704723,0.55185082){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Joint 2\end{tabular}}}}%
+    \put(0.32118305,0.43591297){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Joint 3\end{tabular}}}}%
+    \put(0.23645583,0.27893755){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Joint 4\end{tabular}}}}%
+    \put(0.51958716,0.39303944){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Joint 5\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{rehab_description.pdf}}%
+    \put(0.32236755,0.23546679){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}F/T sensor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{rehab_description.pdf}}%
+    \put(0.25822333,0.21696948){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}(a)\end{tabular}}}}%
+    \put(0.25972394,0.00362138){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}(b)\end{tabular}}}}%
+    \put(0.78765839,0.30280927){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}(c)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{rehab_description.pdf}}%
+    \put(0.66321006,0.17643602){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}R\end{tabular}}}}%
+    \put(0.71047252,0.12290698){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}r\end{tabular}}}}%
+    \put(0.69874066,0.1999617){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}L\end{tabular}}}}%
+    \put(0.76619659,0.17436485){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
+    \put(0.7654489,0.10784735){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
+    \put(0.93384798,0.12286867){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sez. A-A\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{rehab_description.pdf}}%
+    \put(0.88554063,0.27744735){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{rehab_description.pdf}}%
+    \put(0.929375,0.0501315){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a\end{tabular}}}}%
+    \put(0.78765839,0.00362138){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}(d)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{rehab_description.pdf}}%
+    \put(0.09098415,0.05614921){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}LINK 0\end{tabular}}}}%
+    \put(0.04197683,0.146908){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}JOINT 1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{rehab_description.pdf}}%
+    \put(0.96280589,0.08311721){\color[rgb]{0,0,0}\transparent{0.95899999}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}a\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
